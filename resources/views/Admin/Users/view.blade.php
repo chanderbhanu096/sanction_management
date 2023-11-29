@@ -32,7 +32,7 @@
                                     <td>{{$u->email}}</td>
                                     <td>{{$u->role}}</td>
                                     <td>{{$u->district}}</td>
-                                    <td><a href="" class="btn btn-primary">Edit</a></td>
+                                    <td><a href="{{url('admin/user-edit').'/'.$u->id}}" class="btn btn-primary">Edit</a></td>
                                     <td><a href="" class="btn btn-danger">Delete</a></td>
                                 </tr>
                             @endforeach

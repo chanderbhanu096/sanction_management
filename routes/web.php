@@ -23,4 +23,7 @@ Route::prefix('admin')->group(function()
     Route::get('/user',[UserController::class,'index']);
     Route::post('/add-user',[UserController::class,'create']);
     Route::get('/user/view',[UserController::class,'view']);
+    Route::get('/user-edit/{id}',[UserController::class,'edit']);
+    Route::put('/user-edit/{id}',[UserController::class,'update']);
+    
 });
