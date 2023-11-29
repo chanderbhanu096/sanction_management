@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="h3 mb-3 text-gray-800">View User
-                    <a href="{{url('admin/user')}}" class="btn btn-primary btn-sm float-right">Add Posts</a>
+                    <a href="{{url('admin/user')}}" class="btn btn-primary btn-sm float-right">Add User</a>
                 </h3>
             </div>
             <div class="card-body">
@@ -22,7 +22,6 @@
                             <th>Role</th>
                             <th>District</th>
                             <th>Edit</th>
-                            <th>Delete</th>
                         </thead>
                         <tbody>
                             @foreach ($user as $u)
@@ -32,8 +31,7 @@
                                     <td>{{$u->email}}</td>
                                     <td>{{$u->role}}</td>
                                     <td>{{$u->district}}</td>
-                                    <td><a href="{{url('admin/user-edit').'/'.$u->id}}" class="btn btn-primary">Edit</a></td>
-                                    <td><a href="" class="btn btn-danger">Delete</a></td>
+                                    <td><a href="{{url('admin/user-edit').'/'.$u->id}}" class="btn btn-primary">Edit</a></td> 
                                 </tr>
                             @endforeach
                         </tbody>
