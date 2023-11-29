@@ -1,0 +1,22 @@
+.global-navbar
+{
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.bg-blue
+{
+    background-color: #0b79e7!important;
+}
+
+.navbar a
+{
+    color: white;
+    font-size:1.2rem;
+    margin-left: 18px;
+}
+
+.bg-gray
+{
+    background-color: #ddd;
+}
