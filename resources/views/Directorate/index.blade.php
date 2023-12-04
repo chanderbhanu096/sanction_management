@@ -88,3 +88,15 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+$(document).ready(function()
+{
+    $.getJSON('gpname.json',function(data)
+    {
+        console.log(data);
+    })
+});
+</script>
+@endsection
