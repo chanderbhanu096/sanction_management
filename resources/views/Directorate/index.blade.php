@@ -93,10 +93,10 @@
 <script>
 $(document).ready(function()
 {
-    $.getJSON('gpname.json',function(data)
+    $.getJSON("{{asset('assets/json/gpname.json')}}",function(data)
     {
         console.log(data);
-    })
+    });
 });
 </script>
 @endsection
