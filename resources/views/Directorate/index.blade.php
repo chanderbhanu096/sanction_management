@@ -95,7 +95,10 @@ $(document).ready(function()
 {
     $.getJSON("{{asset('assets/json/gpname.json')}}",function(data)
     {
-        console.log(data);
+       $.each(data,function(key,value)
+       {
+        console.log(value);
+       });
     });
 });
 </script>
