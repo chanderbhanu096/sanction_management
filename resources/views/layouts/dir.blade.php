@@ -17,14 +17,14 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        @include('layouts/inc/admin-sidebar')
+        @include('layouts/inc/dir-sidebar')
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
-                @include('layouts/inc/admin-navbar')
+                @include('layouts/inc/dir-navbar')
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <main>
@@ -33,7 +33,7 @@
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
-            @include('layouts/inc/admin-footer')
+            @include('layouts/inc/dir-footer')
             <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
