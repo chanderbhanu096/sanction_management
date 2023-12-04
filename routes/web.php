@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Dir\DirController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,4 +27,9 @@ Route::prefix('admin')->group(function()
     Route::get('/user-edit/{id}',[UserController::class,'edit']);
     Route::put('/user-edit/{id}',[UserController::class,'update']);
     
+});
+
+Route::prefix('dir')->group(function()
+{
+    Route::get('/',[DirController::class,'index']);
 });
