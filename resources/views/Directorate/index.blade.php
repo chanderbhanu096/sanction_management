@@ -20,37 +20,16 @@
                 </select>
             </div>
             {{-- District Name --}}
-            <div class="mb-3">
-                <label for="District" class="form-label">Select District</label>
-                <select name="financial_year" id="financial_year" class="form-control">
-                    <option value="-1">--Select District--</option>
-                    <option value="Bilaspur">Bilaspur</option>
-                    <option value="Chamba">Chamba</option>
-                    <option value="Hamirpur">Hamirpur</option>
-                    <option value="Kangra">Kangra</option>
-                    <option value="Kinnaur">Kinnaur</option>
-                    <option value="Kullu">Kullu</option>
-                    <option value="Lahul And Spiti">Lahul And Spiti</option>
-                    <option value="Mandi">Mandi</option>
-                    <option value="Shimla">Shimla</option>
-                    <option value="Sirmaur">Sirmaur</option>
-                    <option value="Solan">Solan</option>
-                    <option value="Una">Una</option>
-                </select>
+            <div class="mb-3" id="district-block">
+                
             </div>
             {{-- Block Name --}}
-            <div class="mb-3">
-                <label for="Block Name" class="form-label">Select Block</label>
-                <select name="block" id="block_name" class="form-control">
-                    <option value="-1">--Select Block Name--</option>
-                </select>
+            <div class="mb-3" id="blocks-block">
+                
             </div>
              {{-- GramPanchayat Name --}}
-             <div class="mb-3">
-                <label for="Block Name" class="form-label">Select Gram Panchayat</label>
-                <select name="block" id="block_name" class="form-control">
-                    <option value="-1">--Select Gram Panchayat--</option>
-                </select>
+             <div class="mb-3" id="gp-block">
+                
             </div>
             {{-- New Gram Panchayat Check --}}
            <div class="mb-3 form-control" >
@@ -91,15 +70,51 @@
 
 @section('scripts')
 <script>
-$(document).ready(function()
-{
-    $.getJSON("{{asset('assets/json/gpname.json')}}",function(data)
-    {
-       $.each(data,function(key,value)
-       {
-        console.log(value);
-       });
-    });
-});
+   $(document).ready(function() {
+            // Load the JSON data
+            $.getJSON("{{asset('assets/json/gpname.json')}}", function(data) {
+                // Display the list of districts
+               
+                displayDistricts(data.districts);
+
+                // Handle district selection
+                $("#district-block").on("change", "#district-list", function() {
+                    var selectedDistrict = $(this).val();
+                    displayBlocks(data.data[selectedDistrict]);
+                });
+
+                // Handle block selection
+                $("#blocks-block").on("change", "#block-list", function() {
+                    var selectedDistrict = $("#district-list").val();
+                    var selectedBlock = $(this).val();
+                    displayPanchayats(data.data[selectedDistrict][selectedBlock]);
+                });
+            });
+        });
+    function displayDistricts(districts) {
+            var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control"><option value="">Select District</option>';
+            $.each(districts, function(index, district) {
+                districtList += '<option value="' + district + '">' + district + '</option>';
+            });
+            districtList += '</select>';
+            $("#district-block").html(districtList);
+        }
+        function displayBlocks(blocks) {
+            var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select id="block-list" class="form-control"><option value="">Select Block</option>';
+            $.each(blocks, function(block, panchayats) {
+                blockList += '<option value="' + block + '">' + block + '</option>';
+            });
+            blockList += '</select>';
+            $("#blocks-block").html(blockList);
+        }
+
+        function displayPanchayats(panchayats) {
+            var panchayatList = '<label for="Gram Panchayat name" class="form-label">Select Gram Panchayat Name</label><select id="panchayat-list" class="form-control"><option value="">Select Gram Panchayat</option>';
+            $.each(panchayats, function(index, panchayat) {
+                panchayatList += '<option value="' + panchayat + '">' + panchayat + '</option>';
+            });
+            panchayatList += '</select>';
+            $("#gp-block").html(panchayatList);
+        }
 </script>
 @endsection
