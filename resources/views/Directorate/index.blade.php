@@ -92,7 +92,7 @@
             });
         });
     function displayDistricts(districts) {
-            var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control"><option value="">Select District</option>';
+            var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control"><option value="-1">Select District</option>';
             $.each(districts, function(index, district) {
                 districtList += '<option value="' + district + '">' + district + '</option>';
             });
@@ -100,7 +100,7 @@
             $("#district-block").html(districtList);
         }
         function displayBlocks(blocks) {
-            var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select id="block-list" class="form-control"><option value="">Select Block</option>';
+            var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select id="block-list" class="form-control"><option value="-1">Select Block</option>';
             $.each(blocks, function(block, panchayats) {
                 blockList += '<option value="' + block + '">' + block + '</option>';
             });
@@ -109,7 +109,7 @@
         }
 
         function displayPanchayats(panchayats) {
-            var panchayatList = '<label for="Gram Panchayat name" class="form-label">Select Gram Panchayat Name</label><select id="panchayat-list" class="form-control"><option value="">Select Gram Panchayat</option>';
+            var panchayatList = '<label for="Gram Panchayat name" class="form-label">Select Gram Panchayat Name</label><select id="panchayat-list" class="form-control"><option value="-1">Select Gram Panchayat</option>';
             $.each(panchayats, function(index, panchayat) {
                 panchayatList += '<option value="' + panchayat + '">' + panchayat + '</option>';
             });
