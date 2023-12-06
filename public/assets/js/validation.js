@@ -17,7 +17,10 @@ function validateForm()
     let blockSelected=$('#block-list').val();
     let gpSelected=$('#panchayat-list').val();
     let newGP=$("input[name='newGP']:checked").val();
-    let amount=$('#sanction').val();
+    let sanctionAmount=$('#sanction_amt').val();
+    let sanctionDate=$('#sanction_date').val();
+    let sanction_Head=$('#sanction_head').val();
+    let sanction_purpose=$('#sanction_purpose').val();
     // Validate Financial Year
     if(selectedFY==="-1")
     {
@@ -77,16 +80,50 @@ function validateForm()
     }
 
     // Validate Sanction amount
-    console.log(amount);
-    if(amount < 0 || amount==="0")
+    
+    if(sanctionAmount <=0 ||sanctionAmount==='')
     {
         isValid=false;
-        $('#sanction').next(".error").remove();
-        $('#sanction').after("<span class='error'>Please enter the valid amount</span>")
+        $('#sanction_amt').next(".error").remove();
+        $('#sanction_amt').after("<span class='error'>Please enter the valid amount</span>");
     }
     else
     {
-        $('#sanction').next(".error").remove();
+        $('#sanction_amt').next(".error").remove();
     }
-    return false;
+    // Validate Selected Date
+    let currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+    if(sanctionDate> currentDate ||sanctionDate=='')
+    {
+        isValid=false;
+        $('#sanction_date').next(".error").remove();
+        $('#sanction_date').after("<div class=' mt-2 alert alert-danger error'>Please enter the valid date</div>");
+    }
+    else
+    {
+        $('#sanction_date').next(".error").remove();
+    }
+    // Validate Sanction Head
+    if(sanction_head===''|| sanction_Head.length<8)
+    {
+        isValid=false;
+        $('#sanction_head').next(".error").remove();
+        $('#sanction_head').after("<div class=' mt-2 alert alert-danger error'>Please enter the valid Sanction</div>");
+    }
+    else
+    {
+        $('#sanction_head').next(".error").remove();
+    }
+    // Validate Sanction Purpose
+    if(sanction_purpose==='-1')
+    {
+        isValid=false;
+        $('#sanction_purpose').next(".error").remove();
+        $('#sanction_purpose').after("<div class=' mt-2 alert alert-danger error'>Please select Sanction Purpose</div>");
+    }
+    else
+    {
+        $('#sanction_purpose').next(".error").remove();
+    }
+    return isValid;
 }

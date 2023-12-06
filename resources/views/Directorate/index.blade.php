@@ -42,7 +42,7 @@
             {{-- Amount --}}
             <div class="mb-3">
                 <label for="Block Name" class="form-label">Enter Sanction Amount(in Rs.)</label>
-                <input type="number" name="san_amount" id="sanction" class="form-control">
+                <input type="number" name="san_amount" id="sanction_amt" class="form-control">
             </div>
             {{-- Sanction Date --}}
            <div class="mb-3">
@@ -51,7 +51,7 @@
            </div>
            {{-- Head of Sanction --}}
            <div class="mb-3">
-            <label for="Head of Sanction" class="form-label">Enter Head of Sanction</label>
+            <label for="Head of Sanction" class="form-label">Enter Sanction Head</label>
             <input type="text" name="sanction_head" id="sanction_head" class="form-control">
            </div>
            {{-- Purpose of sanction --}}
