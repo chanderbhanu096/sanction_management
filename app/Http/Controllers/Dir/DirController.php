@@ -11,4 +11,8 @@ class DirController extends Controller
     {
         return view('Directorate/index');
     }
+    public function store(Request $req)
+    {
+        echo $req['san_amount'];
+    }
 }

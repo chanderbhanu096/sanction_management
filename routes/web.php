@@ -32,4 +32,5 @@ Route::prefix('admin')->group(function()
 Route::prefix('dir')->group(function()
 {
     Route::get('/',[DirController::class,'index']);
+    Route::post('/sanction-add',[DirController::class,'store']);
 });

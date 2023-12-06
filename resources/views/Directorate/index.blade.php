@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
         <h4>Add Sanction</h3>
-        <form action=""  id="sanction">
+        <form action="{{url('dir/sanction-add')}}"  id="sanction" method="POST">
             @csrf
             {{-- Financial Year --}}
             <div class="mb-3">
