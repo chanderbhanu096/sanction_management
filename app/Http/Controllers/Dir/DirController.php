@@ -4,15 +4,32 @@ namespace App\Http\Controllers\Dir;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Sanction\sanRequest;
+use App\Models\Sanction;
 class DirController extends Controller
 {
     public function index()
     {
         return view('Directorate/index');
     }
-    public function store(Request $req)
+    public function store(sanRequest $req)
     {
-        echo $req['san_amount'];
+        $data=$req->validated();
+        $sanction=new Sanction;
+        $sanction->sanction_fy=$data['financial_year'];
+        $sanction->district=$data['district'];
+        $sanction->block=$data['block'];
+        $sanction->gp=$data['gp'];
+        $sanction->newgp=$data['newGP'];
+        $sanction->sanction_amt=$data['sanction_amt'];
+        $sanction->sanction_date=$data['sanction_date'];
+        $sanction->sanction_head=$data['sanction_head'];
+        $sanction->sanction_purpose=$data['sanction_purpose'];
+        $sanction->save();
+        return redirect(url('dir/view'))->with("message","Sanction added successfully!");
+    }
+    public function view()
+    {
+        return view('Directorate/view');
     }
 }

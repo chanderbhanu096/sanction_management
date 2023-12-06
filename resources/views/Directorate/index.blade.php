@@ -6,6 +6,13 @@
     </div>
     <div class="card-body">
         <h4>Add Sanction</h3>
+            @if($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <div>{{$error}}</div>
+                @endforeach
+            </div>
+            @endif
         <form action="{{url('dir/sanction-add')}}"  id="sanction" method="POST">
             @csrf
             {{-- Financial Year --}}
@@ -57,7 +64,7 @@
            {{-- Purpose of sanction --}}
            <div class="mb-3">
             <label for="purpose of sanction" class="form-label">Purpose of Sanction</label>
-            <select name="sanction_purpose" id="sanction_purpose" class="form-control">
+            <select name="sanction_purpose" id="sanction_purpose" class="form-control" name="sanction_purpose">
                 <option value="-1">Select Sanction Purpose</option>
                 <option value="New Panchayat Ghar">New Panchayat Ghar</option>
             </select>
@@ -92,7 +99,7 @@
             });
         });
     function displayDistricts(districts) {
-            var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control"><option value="-1">--Select District--</option>';
+            var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control" name="district"><option value="-1">--Select District--</option>';
             $.each(districts, function(index, district) {
                 districtList += '<option value="' + district + '">' + district + '</option>';
             });
@@ -100,7 +107,7 @@
             $("#district-block").html(districtList);
         }
         function displayBlocks(blocks) {
-            var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select id="block-list" class="form-control"><option value="-1">--Select Block--</option>';
+            var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select id="block-list" class="form-control" name="block"><option value="-1">--Select Block--</option>';
             $.each(blocks, function(block, panchayats) {
                 blockList += '<option value="' + block + '">' + block + '</option>';
             });
@@ -109,7 +116,7 @@
         }
 
         function displayPanchayats(panchayats) {
-            var panchayatList = '<label for="Gram Panchayat name" class="form-label">Select Gram Panchayat Name</label><select id="panchayat-list" class="form-control"><option value="-1">--Select Gram Panchayat--</option>';
+            var panchayatList = '<label for="Gram Panchayat name" class="form-label">Select Gram Panchayat Name</label><select id="panchayat-list" class="form-control" name="gp"><option value="-1">--Select Gram Panchayat--</option>';
             $.each(panchayats, function(index, panchayat) {
                 panchayatList += '<option value="' + panchayat + '">' + panchayat + '</option>';
             });
