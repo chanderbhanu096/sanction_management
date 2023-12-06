@@ -16,12 +16,12 @@ class DirController extends Controller
     {
         $data=$req->validated();
         $sanction=new Sanction;
-        $sanction->sanction_fy=$data['financial_year'];
+        $sanction->financial_year=$data['financial_year'];
         $sanction->district=$data['district'];
         $sanction->block=$data['block'];
         $sanction->gp=$data['gp'];
-        $sanction->newgp=$data['newGP'];
-        $sanction->sanction_amt=$data['sanction_amt'];
+        $sanction->newGP=$req['newGP'];
+        $sanction->san_amount=$data['san_amount'];
         $sanction->sanction_date=$data['sanction_date'];
         $sanction->sanction_head=$data['sanction_head'];
         $sanction->sanction_purpose=$data['sanction_purpose'];

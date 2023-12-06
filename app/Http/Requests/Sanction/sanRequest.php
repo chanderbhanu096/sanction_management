@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Sanction;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
 class sanRequest extends FormRequest
 {
@@ -26,8 +27,7 @@ class sanRequest extends FormRequest
             'district'=>['required','string'],
             'block'=>['required','string'],
             'gp'=>['required','string'],
-            'newGP'=>['required'],
-            'sanction_amt'=>['required|regex:/^\d+(\.\d{1,2})?$/'],
+            'san_amount'=>['required'],
             'sanction_date'=>['required','date'],
             'sanction_head'=>['required','string'],
             'sanction_purpose'=>['required','string']

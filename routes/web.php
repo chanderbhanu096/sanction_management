@@ -33,5 +33,5 @@ Route::prefix('dir')->group(function()
 {
     Route::get('/',[DirController::class,'index']);
     Route::post('/sanction-add',[DirController::class,'store']);
-    Route::post('/view',[DirController::class,'view']);
+    Route::get('/view',[DirController::class,'view']);
 });

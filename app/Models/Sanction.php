@@ -9,5 +9,5 @@ class Sanction extends Model
 {
     use HasFactory;
     protected $table="sanction";
-    protected $fillable=['sanction_fy','district','block','gp','newgp','sanction_amt','sanction_date','sanction_head','sanction_purpose'];
+    protected $fillable=['financial_year','district','block','gp','newGP','san_amount','sanction_date','sanction_head','sanction_purpose'];
 }
