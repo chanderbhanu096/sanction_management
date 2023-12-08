@@ -42,32 +42,32 @@
             {{-- New Gram Panchayat Check --}}
            <div class="mb-3 form-control" >
                 <label for="New GP" class="form-label">Whether this Gram Panchayat is newly created?</label>
-                <input type="radio" name="newGP" value="Yes" class="ml-5">
+                <input type="radio" name="newGP" value="Yes" {{$sanction->newGP=='yes'?'checked':''}} class="ml-5">
                 <label for="yes" class="form-label">Yes</label>
-                <input type="radio" name="newGP" value="No" class="">
+                <input type="radio" name="newGP" value="No" {{$sanction->newGP=='no'?'checked':''}} class="">
                 <label for="No" class="form-label">No</label>
            </div>
             {{-- Amount --}}
             <div class="mb-3">
                 <label for="Block Name" class="form-label">Enter Sanction Amount(in Rs.)</label>
-                <input type="number" name="san_amount" id="sanction_amt" class="form-control">
+                <input type="number" name="san_amount" id="sanction_amt" class="form-control" value="{{$sanction->san_amount}}">
             </div>
             {{-- Sanction Date --}}
            <div class="mb-3">
                 <label for="Date" class="form-label">Select Date of Sanction</label>
-                <input type="date" name="sanction_date" class="form-control" id="sanction_date">
+                <input type="date" name="sanction_date" class="form-control" id="sanction_date" value="{{$sanction->sanction_date}}">
            </div>
            {{-- Head of Sanction --}}
            <div class="mb-3">
             <label for="Head of Sanction" class="form-label">Enter Sanction Head</label>
-            <input type="text" name="sanction_head" id="sanction_head" class="form-control">
+            <input type="text" name="sanction_head" id="sanction_head" class="form-control" value="{{$sanction->sanction_head}}">
            </div>
            {{-- Purpose of sanction --}}
            <div class="mb-3">
             <label for="purpose of sanction" class="form-label">Purpose of Sanction</label>
             <select name="sanction_purpose" id="sanction_purpose" class="form-control" name="sanction_purpose">
                 <option value="-1">Select Sanction Purpose</option>
-                <option value="New Panchayat Ghar">New Panchayat Ghar</option>
+                <option value="New Panchayat Ghar" {{$sanction->sanction_purpose=='New Panchayat Ghar'?'selected':''}}>New Panchayat Ghar</option>
             </select>
            </div>
            <button type="submit" class="btn btn-primary">Add Sanction</button>
