@@ -31,7 +31,10 @@ class DirController extends Controller
     public function view()
     {
         $sanction=Sanction::all();
-        
         return view('Directorate/view',compact('sanction'));
+    }
+    public function edit()
+    {
+        return view('Directorate/edit');
     }
 }
