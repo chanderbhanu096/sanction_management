@@ -7,6 +7,7 @@
     <div class="card-body">
         <form action="{{url('dir/sanction-add')}}"  id="sanction" method="POST">
             @csrf
+            @method('PUT')
             {{-- Financial Year --}}
             <div class="mb-3">
                 <label for="Financial Year" class="form-label">Select Financial Year</label>
@@ -22,7 +23,19 @@
             <div class="mb-3" id="district-block">
                 <label for="District name" class="form-label">Select District Name</label>
                 <select id="district-list" class="form-control" name="district">
-                    <option value="{{$sanction->district}}">{{$sanction->district}}</option>
+                    <option value="-1">--Select District--</option>
+                    <option value="Bilaspur">Bilaspur</option>
+                    <option value="Chamba">Chamba</option>
+                    <option value="Hamirpur">Hamirpur</option>
+                    <option value="Kangra">Kangra</option>
+                    <option value="Kinnaur">Kinnaur</option>
+                    <option value="Lahul And Spiti"></option>
+                    <option value="Shimla">Shimla</option>
+                    <option value="Sirmaur">Sirmaur</option>
+                    <option value="Solan">Solan</option>
+                    <option value="Una">Una</option>
+                    <option value="Kullu">Kullu</option>
+                    <option value="Mandi">Mandi</option>
                 </select>
             </div>
             {{-- Block Name --}}
@@ -100,12 +113,14 @@
             });
         });
     function displayDistricts(districts) {
+
             var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control" name="district"><option value="-1">--Select District--</option>';
             $.each(districts, function(index, district) {
                 districtList += '<option value="' + district + '">' + district + '</option>';
             });
             districtList += '</select>';
             $("#district-block").html(districtList);
+
         }
         function displayBlocks(blocks) {
             var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select id="block-list" class="form-control" name="block"><option value="-1">--Select Block--</option>';
