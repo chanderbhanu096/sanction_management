@@ -33,8 +33,9 @@ class DirController extends Controller
         $sanction=Sanction::all();
         return view('Directorate/view',compact('sanction'));
     }
-    public function edit()
+    public function edit($id)
     {
-        return view('Directorate/edit');
+        $sanction=Sanction::find($id);
+        return view('Directorate/edit',compact('sanction'));
     }
 }

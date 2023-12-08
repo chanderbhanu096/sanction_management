@@ -12,23 +12,32 @@
                 <label for="Financial Year" class="form-label">Select Financial Year</label>
                 <select name="financial_year" id="financial_year" class="form-control">
                     <option value="-1">--Select F.Y.--</option>
-                    <option value="2020-21">2020-21</option>
-                    <option value="2021-22">2021-22</option>
-                    <option value="2022-23">2022-23</option>
-                    <option value="2023-24">2023-24</option>
+                    <option value="2020-21" {{$sanction->financial_year=='2020-21'?'selected':''}}>2020-21</option>
+                    <option value="2021-22" {{$sanction->financial_year=='2021-22'?'selected':''}}>2021-22</option>
+                    <option value="2022-23" {{$sanction->financial_year=='2022-23'?'selected':''}}>2022-23</option>
+                    <option value="2023-24" {{$sanction->financial_year=='2023-24'?'selected':''}}>2023-24</option>
                 </select>
             </div>
             {{-- District Name --}}
             <div class="mb-3" id="district-block">
-                
+                <label for="District name" class="form-label">Select District Name</label>
+                <select id="district-list" class="form-control" name="district">
+                    <option value="{{$sanction->district}}">{{$sanction->district}}</option>
+                </select>
             </div>
             {{-- Block Name --}}
             <div class="mb-3" id="blocks-block">
-                
+                <label for="Block name" class="form-label">Select Block Name</label>
+                <select id="block-list" class="form-control" name="block">
+                    <option value="{{$sanction->block}}">{{$sanction->block}}</option>
+                </select>
             </div>
              {{-- GramPanchayat Name --}}
              <div class="mb-3" id="gp-block">
-                
+                <label for="Gram Panchayat name" class="form-label">Select Gram Panchayat</label>
+                <select id="panchayat-list" class="form-control" name="gp">
+                    <option value="{{$sanction->gp}}">{{$sanction->gp}}</option>
+                </select>
             </div>
             {{-- New Gram Panchayat Check --}}
            <div class="mb-3 form-control" >
