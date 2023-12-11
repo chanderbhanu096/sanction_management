@@ -60,7 +60,7 @@ function validateForm()
     {
         isValid=false;
         $('#panchayat-list').next(".error").remove();
-        $('#panchayat-list').after("<span class='error'>Please select Block</span>")
+        $('#panchayat-list').after("<span class='error'>Please select Gram Panchayat</span>")
     }
     else
     {

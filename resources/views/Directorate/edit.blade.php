@@ -5,7 +5,7 @@
         <h3>Directorate Home Page</h3>
     </div>
     <div class="card-body">
-        <form action="{{url('dir/sanction-add')}}"  id="sanction" method="POST">
+        <form action="{{url('dir/sanction-update/'.$sanction->id)}}"  id="sanction" method="POST">
             @csrf
             @method('PUT')
             {{-- Financial Year --}}
@@ -24,18 +24,18 @@
                 <label for="District name" class="form-label">Select District Name</label>
                 <select id="district-list" class="form-control" name="district">
                     <option value="-1">--Select District--</option>
-                    <option value="Bilaspur">Bilaspur</option>
-                    <option value="Chamba">Chamba</option>
-                    <option value="Hamirpur">Hamirpur</option>
-                    <option value="Kangra">Kangra</option>
-                    <option value="Kinnaur">Kinnaur</option>
-                    <option value="Lahul And Spiti"></option>
-                    <option value="Shimla">Shimla</option>
-                    <option value="Sirmaur">Sirmaur</option>
-                    <option value="Solan">Solan</option>
-                    <option value="Una">Una</option>
-                    <option value="Kullu">Kullu</option>
-                    <option value="Mandi">Mandi</option>
+                    <option value="Bilaspur" {{$sanction->district=='Bilaspur'?'selected':''}}>Bilaspur</option>
+                    <option value="Chamba" {{$sanction->district=='Chamba'?'selected':''}}>Chamba</option>
+                    <option value="Hamirpur" {{$sanction->district=='Hamirpur'?'selected':''}}>Hamirpur</option>
+                    <option value="Kangra" {{$sanction->district=='Kangra'?'selected':''}}>Kangra</option>
+                    <option value="Kinnaur" {{$sanction->district=='Kinnaur'?'selected':''}}>Kinnaur</option>
+                    <option value="Lahul And Spiti" {{$sanction->district=='Lahul And Spiti'?'selected':''}}>Lahul And Spiti</option>
+                    <option value="Shimla" {{$sanction->district=='Shimla'?'selected':''}}>Shimla</option>
+                    <option value="Sirmaur" {{$sanction->district=='Sirmaur'?'selected':''}}>Sirmaur</option>
+                    <option value="Solan" {{$sanction->district=='Solan'?'selected':''}}>Solan</option>
+                    <option value="Una" {{$sanction->district=='Una'?'selected':''}}>Una</option>
+                    <option value="Kullu" {{$sanction->district=='Kullu'?'selected':''}}>Kullu</option>
+                    <option value="Mandi" {{$sanction->district=='Mandi'?'selected':''}}>Mandi</option>
                 </select>
             </div>
             {{-- Block Name --}}
@@ -83,7 +83,7 @@
                 <option value="New Panchayat Ghar" {{$sanction->sanction_purpose=='New Panchayat Ghar'?'selected':''}}>New Panchayat Ghar</option>
             </select>
            </div>
-           <button type="submit" class="btn btn-primary">Add Sanction</button>
+           <button type="submit" class="btn btn-primary">Update Sanction Details</button>
         </form>
     </div>
 </div>
@@ -96,7 +96,7 @@
             $.getJSON("{{asset('assets/json/gpname.json')}}", function(data) {
                 // Display the list of districts
                
-                displayDistricts(data.districts);
+                // displayDistricts(data.districts);
 
                 // Handle district selection
                 $("#district-block").on("change", "#district-list", function() {
@@ -112,16 +112,16 @@
                 });
             });
         });
-    function displayDistricts(districts) {
+    // function displayDistricts(districts) {
 
-            var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control" name="district"><option value="-1">--Select District--</option>';
-            $.each(districts, function(index, district) {
-                districtList += '<option value="' + district + '">' + district + '</option>';
-            });
-            districtList += '</select>';
-            $("#district-block").html(districtList);
+    //         var districtList = '<label for="District name" class="form-label">Select District Name</label><select id="district-list" class="form-control" name="district"><option value="-1">--Select District--</option>';
+    //         $.each(districts, function(index, district) {
+    //             districtList += '<option value="' + district + '">' + district + '</option>';
+    //         });
+    //         districtList += '</select>';
+    //         $("#district-block").html(districtList);
 
-        }
+    //     }
         function displayBlocks(blocks) {
             var blockList = '<label for="Block name" class="form-label">Select Block Name</label><select id="block-list" class="form-control" name="block"><option value="-1">--Select Block--</option>';
             $.each(blocks, function(block, panchayats) {
