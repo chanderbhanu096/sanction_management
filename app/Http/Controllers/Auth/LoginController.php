@@ -44,9 +44,11 @@ class LoginController extends Controller
     // dd("provide the name of user",$user->role);
     switch ($user->role) {
         case 'admin':
-            return redirect(url('admin'));
+            return redirect (url('/admin'));
+            break;
         case 'directorate':
-            return redirect(url('dir'));
+            return redirect (url('/dir'));
+            break;
         // Add more cases for other roles as needed
         default:
             return redirect('/');

@@ -25,9 +25,11 @@ class RedirectBasedOnRole
 
             switch ($user->role) {
                 case 'admin':
-                    return redirect('/admin');
+                    return redirect ('/admin');
+                    break;
                 case 'directorate':
-                    return redirect('/dir');
+                    return redirect ('/dir');
+                    break;
             }
         }
     
