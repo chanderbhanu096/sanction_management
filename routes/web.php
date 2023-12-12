@@ -18,7 +18,7 @@ use App\Http\Controllers\Dir\DirController;
 
 Route::get('/',[Home::class,'index']);
 Auth::routes();
-Route::prefix('admin')->group(function()
+Route::prefix('admin')->middleware(['web','auth','role:admin'])->group(function()
 {
     Route::get('/',[AdminController::class,'index']);
     Route::get('/user',[UserController::class,'index']);
@@ -28,8 +28,7 @@ Route::prefix('admin')->group(function()
     Route::put('/user-edit/{id}',[UserController::class,'update']);
     
 });
-
-Route::prefix('dir')->group(function()
+Route::prefix('dir')->middleware(['web','auth','role:directorate'])->group(function()
 {
     Route::get('/',[DirController::class,'index']);
     Route::post('/sanction-add',[DirController::class,'store']);

@@ -28,6 +28,12 @@
             <span>View Sanction</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+        <form action="{{route('logout')}}" method="POST" id="logout-form" class="d-none">
+            @csrf
+        </form>
+    </li>
     <hr class="sidebar-divider">
     <!-- Heading -->
     

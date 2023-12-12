@@ -37,4 +37,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated($request, $user)
+    {
+    // Redirect based on user role
+    // dd("provide the name of user",$user->role);
+    switch ($user->role) {
+        case 'admin':
+            return redirect(url('admin'));
+        case 'directorate':
+            return redirect(url('dir'));
+        // Add more cases for other roles as needed
+        default:
+            return redirect('/');
+    }
+}
 }
