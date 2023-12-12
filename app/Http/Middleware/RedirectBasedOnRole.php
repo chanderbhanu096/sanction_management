@@ -21,18 +21,24 @@ class RedirectBasedOnRole
         // dd('Middleware is executing', $roles);
 
         if ($user && in_array($user->role, $roles)) {
-            // dd('Middleware is executing', $user->role);
-
-            switch ($user->role) {
-                case 'admin':
-                    return redirect ('/admin');
-                    break;
-                case 'directorate':
-                    return redirect ('/dir');
-                    break;
+            if($user->role=='admin')
+            {
+                return redirect(url('admin'));
+            }
+            else if($user->role=='directorate')
+            {
+                return redirect(url('/dir'));
+            }
+            else 
+            {
+                return redirect(url('login'));
             }
         }
-    
+        else
+        {
+
+            return redirect(url('login'));
+        }
         // Call the handle method on $next to continue with the pipeline
         return $next($request);
     }
