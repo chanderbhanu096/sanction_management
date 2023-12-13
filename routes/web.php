@@ -20,7 +20,7 @@ Route::get('/',[Home::class,'index']);
 Auth::routes();
 
 
-Route::prefix('admin')->group(function()
+Route::prefix('admin')->middleware(['auth','web','adminCheck'])->group(function()
 {
     Route::get('/',[AdminController::class,'index']);
     Route::get('/user',[UserController::class,'index']);
@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function()
 
 
 });
-Route::prefix('dir')->group(function()
+Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
 {
     Route::get('/',[DirController::class,'index']);
     Route::post('/sanction-add',[DirController::class,'store']);

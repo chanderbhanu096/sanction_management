@@ -6,8 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-
-class RedirectBasedOnRole
+class DirCheck
 {
     /**
      * Handle an incoming request.
@@ -16,15 +15,14 @@ class RedirectBasedOnRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
         $user = Auth::user();
         if($user)
         {
-            if($user->role=='admin')
-        {
+            if($user->role=='dir')
+          {
             return $next($request);
-        }
-        else
+          }
+            else
         {
             return redirect($user->role);
         }
@@ -33,7 +31,6 @@ class RedirectBasedOnRole
         {
             return rediect('/');
         }
-        
-       
+        return $next($request);
     }
 }
