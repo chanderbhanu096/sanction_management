@@ -35,7 +35,7 @@ class LoginController extends Controller
         {
             return redirect("/admin");
         }
-        else if(Auth::user()->role=="directorate")
+        else if(Auth::user()->role=="dir")
         {
             return redirect('/dir');
         }
