@@ -18,15 +18,15 @@ class RedirectBasedOnRole
     {
         if(Auth::check())
         {
-            if (Auth::user->role=='admin') {
-                return redirect()->url('/admin');
-            } else if (Auth::user->role=='directorate') {
-                return redirect()->url('/dir');
+            if (Auth::user()->role=='admin') {
+                return redirect("/admin");
+            } else if (Auth::user()->role=='directorate') {
+                return redirect('/dir');
             }
         }
         else
         {
-            return view('login');
+            return redirect('/login');
         }
     }
       
