@@ -14,33 +14,20 @@ class RedirectBasedOnRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    public function handle(Request $request, Closure $next): Response
     {
-        $user = auth()->user();
-    
-        // dd('Middleware is executing', $roles);
-
-        if ($user && in_array($user->role, $roles)) {
-            if($user->role=='admin')
-            {
-                return redirect(url('admin'));
-            }
-            else if($user->role=='directorate')
-            {
-                return redirect(url('/dir'));
-            }
-            else 
-            {
-                return redirect(url('login'));
+        if(Auth::check())
+        {
+            if (Auth::user->role=='admin') {
+                return redirect()->url('/admin');
+            } else if (Auth::user->role=='directorate') {
+                return redirect()->url('/dir');
             }
         }
         else
         {
-
-            return redirect(url('login'));
+            return view('login');
         }
-        // Call the handle method on $next to continue with the pipeline
-        return $next($request);
     }
       
 }

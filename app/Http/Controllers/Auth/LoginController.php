@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -28,6 +29,23 @@ class LoginController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function authenticated()
+    {
+        if(Auth::user()->role=="admin")
+        {
+            return redirect("/admin");
+        }
+        else if(Auth::user()->role=="directorate")
+        {
+            return redirect('/dir');
+        }
+        else
+        {
+            return redirect('/');
+        }
+    }
+
+
     /**
      * Create a new controller instance.
      *
@@ -37,21 +55,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    protected function authenticated($request, $user)
-    {
-    // Redirect based on user role
-        if($user->role=='admin')
-        {
-            return redirect (url('/admin'));
-        }
-        else if($user->role=='directorate')
-        {
-            return redirect (url('/dir'));
-        }       
-        else
-        {
-            return redirect (url('/login'));
-        }
-    }  
     }
