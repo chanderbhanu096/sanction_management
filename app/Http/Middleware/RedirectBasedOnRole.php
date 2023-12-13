@@ -14,33 +14,22 @@ class RedirectBasedOnRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next,...$roles): Response
     {
+        
         if (Auth::check()) {
             $userRole = Auth::user()->role;
-
-            // Check the current route to avoid infinite loop
-    
-            $currentRoute = $request->route()->getName();
-            dd("user role",$currentRoute);
-
-            switch ($userRole) {
-                case 'admin':
-                    if ($currentRoute !== 'admin') {
-                        return redirect('admin');
-                    }
-                    break;
-
-                case 'directorate':
-                    if ($currentRoute !== 'dir') {
-                        return redirect('dir');
-                    }
-                    break;
+            if (in_array($userRole, $roles)) {
+                return $next($request);
             }
-        } else {
-            return redirect('/login');
+            // Redirect to the intended role-specific path if the role is valid
+            if (count($roles) > 0) {
+                return redirect("/{$roles[0]}"); // Use the first role as the path
+            } else {
+                // Handle the case where no valid roles are provided
+                abort(403, 'Unauthorized'); // You can customize the error response as needed
+            }
         }
-
-        return $next($request);
+        return redirect('/login');
     }
 }

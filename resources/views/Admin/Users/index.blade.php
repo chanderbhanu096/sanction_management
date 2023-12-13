@@ -34,7 +34,7 @@
                 <select name="role" id="role" class="form-control">
                     <option value="0">--Select Role--</option>
                     <option value="admin">Admin</option>
-                    <option value="directorate">Directorate</option>
+                    <option value="dir">Directorate</option>
                     <option value="district">District</option>
                 </select>
             </div>
