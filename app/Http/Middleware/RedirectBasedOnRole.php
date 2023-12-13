@@ -16,18 +16,31 @@ class RedirectBasedOnRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check())
-        {
-            if (Auth::user()->role=='admin') {
-                return redirect("/admin");
-            } else if (Auth::user()->role=='directorate') {
-                return redirect('/dir');
+        if (Auth::check()) {
+            $userRole = Auth::user()->role;
+
+            // Check the current route to avoid infinite loop
+    
+            $currentRoute = $request->route()->getName();
+            dd("user role",$currentRoute);
+
+            switch ($userRole) {
+                case 'admin':
+                    if ($currentRoute !== 'admin') {
+                        return redirect('admin');
+                    }
+                    break;
+
+                case 'directorate':
+                    if ($currentRoute !== 'dir') {
+                        return redirect('dir');
+                    }
+                    break;
             }
-        }
-        else
-        {
+        } else {
             return redirect('/login');
         }
+
+        return $next($request);
     }
-      
 }

@@ -20,7 +20,7 @@ Route::get('/',[Home::class,'index']);
 Auth::routes();
 
 
-Route::prefix('admin')->middleware(['roleCheck'])->group(function()
+Route::prefix('admin')->middleware(['auth','web','roleCheck'])->group(function()
 {
     Route::get('/',[AdminController::class,'index']);
     Route::get('/user',[UserController::class,'index']);
@@ -28,12 +28,12 @@ Route::prefix('admin')->middleware(['roleCheck'])->group(function()
     Route::get('/user/view',[UserController::class,'view']);
     Route::get('/user-edit/{id}',[UserController::class,'edit']);
     Route::put('/user-edit/{id}',[UserController::class,'update']);
-});
-Route::prefix('dir')->middleware(['roleCheck'])->group(function()
+})->name('admin');
+Route::prefix('dir')->middleware(['auth','web','roleCheck'])->group(function()
 {
     Route::get('/',[DirController::class,'index']);
     Route::post('/sanction-add',[DirController::class,'store']);
     Route::get('/view',[DirController::class,'view']);
     Route::get('/edit/{id}',[DirController::class,'edit']);
     Route::put('/sanction-update/{id}',[DirController::class,'update']);
-});
+})->name('dir');
