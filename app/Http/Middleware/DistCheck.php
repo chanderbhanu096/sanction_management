@@ -23,9 +23,9 @@ class DistCheck
             return $next($request);
           }
             else
-        {
+             {
             return redirect($user->role);
-        }
+            }
         }
         else
         {

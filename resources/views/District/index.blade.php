@@ -17,9 +17,15 @@
                     <th>Add Progress</th>
                     <th>View Progress</th>
                 </thead>
+                @php
+                    $i=1;    
+                @endphp
                 @foreach ($sanction as $san)
                     <tr>
-                        <td></td>
+                        <td>{{$i}}</td>
+                        @php
+                            $i++;
+                        @endphp
                         <td>{{$san->block}}</td>
                         <td>{{$san->gp}}</td>
                         <td>{{$san->san_amount}}</td>
