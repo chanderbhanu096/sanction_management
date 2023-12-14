@@ -5,6 +5,7 @@ use App\Http\Controllers\Home;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Dir\DirController;
+use App\Http\Controllers\District\DistrictController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,4 +39,9 @@ Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
     Route::get('/view',[DirController::class,'view']);
     Route::get('/edit/{id}',[DirController::class,'edit']);
     Route::put('/sanction-update/{id}',[DirController::class,'update']);
+});
+
+Route::prefix('district')->middleware(['auth','web','distCheck'])->group(function()
+{
+    Route::get('/',[DistrictController::class,'index']);
 });
