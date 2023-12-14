@@ -28,7 +28,7 @@
                         @endphp
                         <td>{{$san->block}}</td>
                         <td>{{$san->gp}}</td>
-                        <td>{{$san->san_amount}}</td>
+                        <td>{{$san->total_sanction_amount}}</td>
                         <td><button class="btn btn-primary">View</button></td>
                         <td><button class="btn btn-secondary">Add Progress</button></td>
                         <td><button class="btn btn-info">View Progress</button></td>
