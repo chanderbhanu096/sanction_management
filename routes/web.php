@@ -41,7 +41,7 @@ Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
     Route::put('/sanction-update/{id}',[DirController::class,'update']);
 });
 
-Route::prefix('district')->group(function()
+Route::prefix('district')->middleware(['auth','web','distCheck'])->group(function()
 {
     Route::get('/',[DistrictController::class,'index']);
 });

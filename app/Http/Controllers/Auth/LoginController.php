@@ -39,6 +39,10 @@ class LoginController extends Controller
         {
             return redirect('/dir');
         }
+        else if(Auth::user()->role="district")
+        {
+            return('/district');
+        }
         else
         {
             return redirect('/');
