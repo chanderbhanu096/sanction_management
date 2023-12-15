@@ -6,7 +6,6 @@
     </div>
     <div class="card-body">
         <h4>View Gram Panchayat Sanction Details
-
         </h4>
         <div class="table-responsive">
             <table class="table table-bordered text-center">
@@ -18,6 +17,7 @@
                     <th>Sanction Amount</th> 
                     <th>Sanction Financial Year</th>
                     <th>Is Sanction for new Gram Panchayat?</th>   
+                    <th>Add Progress</th>
                 </thead>
                     @foreach($sanction as $s)
                     <tr>
@@ -28,6 +28,7 @@
                         <td>{{$s->san_amount}}</td>
                         <td>{{$s->financial_year}}</td>
                         <td>{{$s->newGP}}</td>
+                        <td><a href="{{url('district/add-progress'.'/'.$s->id)}}" class="btn btn-primary">Add</a></td>
                     </tr>
                     @endforeach
             </table>

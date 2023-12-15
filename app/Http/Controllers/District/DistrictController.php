@@ -26,4 +26,11 @@ class DistrictController extends Controller
         $sanction=Sanction::where('gp',$gp)->where('district', $district)->get();
         return view('District.details',compact('sanction'));
     }
+
+    public function progress($id)
+    {
+        $district=Auth::user()->district;
+        $sanction=Sanction::where('id',$id)->first();
+        return view('District.progress',compact('sanction'));
+    }
 }

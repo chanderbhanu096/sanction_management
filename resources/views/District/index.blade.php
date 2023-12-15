@@ -13,9 +13,7 @@
                     <th>Block Name</th>
                     <th>Gram Panchayat Name</th>
                     <th>Total Amount Recived</th>
-                    <th>View Details</th>
-                    <th>Add Progress</th>
-                    <th>View Progress</th>
+                    <th>View Details and & Progress</th>
                 </thead>
                 @php
                     $i=1;    
@@ -30,8 +28,6 @@
                         <td>{{$san->gp}}</td>
                         <td>{{$san->total_sanction_amount}}</td>
                         <td><a class="btn btn-primary" href="{{url("district/details".'/'.$san->gp)}}">View</a></td>
-                        <td><button class="btn btn-secondary">Add Progress</button></td>
-                        <td><button class="btn btn-info">View Progress</button></td>
                     </tr>
                 @endforeach
             </table>
