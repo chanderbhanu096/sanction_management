@@ -44,4 +44,5 @@ Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
 Route::prefix('district')->middleware(['auth','web','distCheck'])->group(function()
 {
     Route::get('/',[DistrictController::class,'index']);
+    Route::get('/details/{gp}',[DistrictController::class,'details']);
 });

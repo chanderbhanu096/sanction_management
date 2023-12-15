@@ -29,7 +29,7 @@
                         <td>{{$san->block}}</td>
                         <td>{{$san->gp}}</td>
                         <td>{{$san->total_sanction_amount}}</td>
-                        <td><button class="btn btn-primary">View</button></td>
+                        <td><a class="btn btn-primary" href="{{url("district/details".'/'.$san->gp)}}">View</a></td>
                         <td><button class="btn btn-secondary">Add Progress</button></td>
                         <td><button class="btn btn-info">View Progress</button></td>
                     </tr>

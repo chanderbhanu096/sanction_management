@@ -19,4 +19,11 @@ class DistrictController extends Controller
             // dd($sanction[0]);
         return view('District.index',compact('sanction'));
     }
+
+    public function details($gp)
+    {   
+        $district=Auth::user()->district;
+        $sanction=Sanction::where('gp',$gp)->where('district', $district)->get();
+        return view('District.details',compact('sanction'));
+    }
 }
