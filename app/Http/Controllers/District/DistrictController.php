@@ -16,7 +16,6 @@ class DistrictController extends Controller
             ->where('district', $district)
             ->groupBy('gp','block')
             ->get();
-            // dd($sanction[0]);
         return view('District.index',compact('sanction'));
     }
 

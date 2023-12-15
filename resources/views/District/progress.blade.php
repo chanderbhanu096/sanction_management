@@ -24,12 +24,20 @@
                   <input type="text" class="form-control" id="p_completed_per" name="completion_percentage">
                 </div>
                 <div class="mb-3">
-                    <label for="Work Completed" class="form-label">Is Work Completed for which sanction is given?</label>
+                    <label for="Work Completed" class="form-label">Is Sanction amount fully utilized?</label>
                     <select name="p_isComplete" id="isCompleted" class="form-control">
                         <option value="-1">--Select Option--</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
+                </div>
+                <div class="mb-3" id="uc">
+                    <label for="UC file" class="form-label">Select UC file</label>
+                    <input type="file" class="form-control" id="uc_file" accept="application/pdf">
+                </div>
+                <div class="mb-3">
+                    <label for="Progress Image" class="form-label">Select Progress Image</label>
+                    <input type="file" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="Remarks" class="form-label">Remarks</label>
@@ -44,5 +52,25 @@
     </div>
     
 </div>
+@endsection
+@section('scripts')
+<script>
+$(document).ready(function()
+{
+    $('#uc').hide();
+    $("select#isCompleted").change(function()
+    {
+        let selectedOption=$(this).children('option:selected').val();
+        if(selectedOption=='yes')
+        {
+            $('#uc').show();
+        }
+        else
+        {
+            $('#uc').hide();
+        }
+    })
+});
+</script>
 @endsection
 
