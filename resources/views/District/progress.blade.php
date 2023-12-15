@@ -18,7 +18,8 @@
             </div>
         </div>
         <div class="">
-            <form>
+            <form enctype="multipart/form-data" method="POST">
+                @csrf
                 <div class="mb-3">
                   <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>
                   <input type="text" class="form-control" id="p_completed_per" name="completion_percentage">
@@ -32,12 +33,13 @@
                     </select>
                 </div>
                 <div class="mb-3" id="uc">
-                    <label for="UC file" class="form-label">Select UC file</label>
+                    <label for="UC file" class="form-label">Upload UC file(only pdf file allowed)</label>
                     <input type="file" class="form-control" id="uc_file" accept="application/pdf">
                 </div>
                 <div class="mb-3">
                     <label for="Progress Image" class="form-label">Select Progress Image</label>
-                    <input type="file" class="form-control">
+                    <input type="file" id="imageInput" name="image[]" accept="image/jpeg, image/jpg, image/png" multiple>
+                    <small>Allowed formats: jpg, jpeg, png</small>
                 </div>
                 <div class="mb-3">
                     <label for="Remarks" class="form-label">Remarks</label>
