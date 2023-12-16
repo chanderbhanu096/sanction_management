@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="">
-            <form enctype="multipart/form-data" method="POST">
+            <form enctype="multipart/form-data" id="progress_form">
                 @csrf
                 <div class="mb-3">
                   <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>
@@ -33,7 +33,7 @@
                     </select>
                 </div>
                 <div class="mb-3" id="uc">
-                    <label for="UC file" class="form-label">Upload UC file(only pdf file allowed)</label>
+                    <label for="UC file" class="form-label">Upload UC file(only pdf file allowed and PDf file size should be less than 2MB)</label>
                     <input type="file" class="form-control" id="uc_file" accept="application/pdf">
                 </div>
                 <div class="mb-3">
@@ -74,5 +74,6 @@ $(document).ready(function()
     })
 });
 </script>
+<script src="{{asset('assets/js/progress_validation.js')}}"></script>
 @endsection
 
