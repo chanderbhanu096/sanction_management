@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Sanction;
+use App\Http\Requests\Progress\ProgressData;
 use Illuminate\Support\Facades\DB;
 class DistrictController extends Controller
 {
@@ -31,5 +32,12 @@ class DistrictController extends Controller
         $district=Auth::user()->district;
         $sanction=Sanction::where('id',$id)->first();
         return view('District.progress',compact('sanction'));
+    }
+
+    public function addProgress(ProgressData $data,$id)
+    {
+        $progress=$data->validated();
+        
+
     }
 }

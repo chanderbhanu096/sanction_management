@@ -23,6 +23,8 @@ class ProgressData extends FormRequest
     {
         $rules=
         [
+            'completion_percentage'=>['required','decimal'],
+            'p_isComplete'=>['required','string'],
             
         ];
         return $rules;

@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="">
-            <form enctype="multipart/form-data" id="progress_form">
+            <form enctype="multipart/form-data" id="progress_form" method="POST" action="{{url('district/add-progress/'.'/'.{$sanction->id})}}">
                 @csrf
                 <div class="mb-3">
                   <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>

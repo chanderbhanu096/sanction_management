@@ -46,4 +46,5 @@ Route::prefix('district')->middleware(['auth','web','distCheck'])->group(functio
     Route::get('/',[DistrictController::class,'index']);
     Route::get('/details/{gp}',[DistrictController::class,'details']);
     Route::get('/add-progress/{id}',[DistrictController::class,'progress']);
+    Route::get('/district/add-progress/{id}',DistrictController::class,'addProgress');
 });
