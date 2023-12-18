@@ -65,5 +65,11 @@ class DistrictController extends Controller
         $progress->sanction_id=$progressValidated['sanction_id'];
         $progress->p_update=$formatDate;
         $progress->save();
+        return redirect(url('district/view-progress'))->with('message',"Progress Added Successfully!");
+    }
+
+    public function viewProgress()
+    {
+        return view('District/view-Progress');
     }
 }
