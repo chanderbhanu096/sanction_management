@@ -16,11 +16,12 @@ return new class extends Migration
             $table->decimal('completion_percentage', 5, 2);
             $table->date('p_update');
             $table->enum('p_isComplete',['yes','no']);
-            $table->string('p_uc');
-            $table->string('p_image');
-            $table->integer('sanction_id');
-            $table->text('remarks');
+            $table->string('p_uc')->nullable()->default(null);
+            $table->string('p_image')->nullable()->default(null);
+            $table->unsignedBigInteger('sanction_id');
+            $table->text('remarks')->nullabe();
             $table->timestamps();
+            $table->foreign('sanction_id')->reference('id')->on('sanction')->onDelete('cascade');;
         });
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Sanction;
+use App\Models\Progress;
 use App\Http\Requests\Progress\ProgressData;
 use Illuminate\Support\Facades\DB;
 class DistrictController extends Controller
@@ -34,10 +35,35 @@ class DistrictController extends Controller
         return view('District.progress',compact('sanction'));
     }
 
-    public function addProgress(ProgressData $data,$id)
+    public function addProgress(ProgressData $data)
     {
-        $progress=$data->validated();
-        
+        $currentDate=now();
+        $formatDate=$currentDate->format('Y-m-d H:i:s');
+        $progressValidated=$data->validated();
+        $progress=new Progress;
+        $progress->completion_percentage=$progressValidated['completion_percentage'];
+        $progress->p_isComplete=$progressValidated['p_isComplete'];
+        if($data->hasFile('p_uc'))
+        {
+            $file=$data->file('p_uc');
+            $filename=$data->sanction_id.time().'.'.$file->getClientOriginalExtension();
+            $file->move('uploads/ucs/',$filename);
+            $progress->p_uc=$filename;
+        }
 
+        if($data->hasFile('p_image'))
+        {
+            $uploadedImage=$data->file('p_image');
+            foreach($uploadedImage as $u)
+            {
+                $filename=$progress->sanction_id.'_'.time().'_'.$u->getClientOriginalName();
+                $uploadedImage->move('uploads/images/',$filename);
+                $progress->images()->create(['image_path'=>$filename]);
+            }
+        }
+        $progress->remarks=$progressValidated['remarks'];
+        $progress->sanction_id=$progressValidated['sanction_id'];
+        $progress->p_update=$formatDate;
+        $progress->save();
     }
 }

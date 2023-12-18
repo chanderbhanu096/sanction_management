@@ -1,6 +1,13 @@
 @extends('layouts/district')
 @section('main')
 <div class="card m-4">
+    @if($errors->any())
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+            <div>{{$error}}</div>
+        @endforeach
+    </div>
+    @endif
     <div class="card-header">
         <h4>Add Sanction Progress</h4>
     </div>
@@ -18,8 +25,9 @@
             </div>
         </div>
         <div class="">
-            <form enctype="multipart/form-data" id="progress_form" method="POST" action="{{url('district/add-progress/'.'/'.{$sanction->id})}}">
+            <form enctype="multipart/form-data" id="progress_form" method="POST" action="{{url('district/add-progress')}}">
                 @csrf
+                <input type="hidden" class="form-control" name="sanction_id" value="{{$sanction->id}}">
                 <div class="mb-3">
                   <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>
                   <input type="text" class="form-control" id="p_completed_per" name="completion_percentage">
@@ -34,11 +42,11 @@
                 </div>
                 <div class="mb-3" id="uc">
                     <label for="UC file" class="form-label">Upload UC file(only pdf file allowed and PDf file size should be less than 2MB)</label>
-                    <input type="file" class="form-control" id="uc_file" accept="application/pdf">
+                    <input type="file" class="form-control" id="uc_file" name="p_uc" accept="application/pdf">
                 </div>
                 <div class="mb-3">
                     <label for="Progress Image" class="form-label">Select Progress Image</label>
-                    <input type="file" id="imageInput" name="image[]" accept="image/jpeg, image/jpg, image/png" multiple>
+                    <input type="file" id="imageInput" name="p_image[]" accept="image/jpeg, image/jpg, image/png" multiple>
                     <small>Allowed formats: jpg, jpeg, png</small>
                 </div>
                 <div class="mb-3">
