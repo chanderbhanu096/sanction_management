@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('p_uc')->nullable()->default(null);
             $table->string('p_image')->nullable()->default(null);
             $table->unsignedBigInteger('sanction_id');
-            $table->text('remarks')->nullabe();
+            $table->text('remarks')->nullable()->default(null);
             $table->timestamps();
-            $table->foreign('sanction_id')->reference('id')->on('sanction')->onDelete('cascade');;
+            $table->foreign('sanction_id')->references('id')->on('sanction')->onDelete('cascade');;
         });
     }
 

@@ -12,7 +12,7 @@ class Progress extends Model
     protected $table="progress";
     protected $fillable=['completion_percentage','p_update','p_isComplete','p_uc','p_image','sanction_id','remarks'];
 
-    public function images()
+    public function image()
     {
         return $this->hasMany(Image::class);
     }

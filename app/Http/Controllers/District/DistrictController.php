@@ -51,20 +51,21 @@ class DistrictController extends Controller
             $progress->p_uc=$filename;
         }
 
+        $progress->remarks=$progressValidated['remarks'];
+        $progress->sanction_id=$progressValidated['sanction_id'];
+        $progress->p_update=$formatDate;
+        $progress->save();
+        $p_stored=Progress::where('sanction_id',$data->sanction_id)->get()->first();
         if($data->hasFile('p_image'))
         {
             $uploadedImage=$data->file('p_image');
             foreach($uploadedImage as $u)
             {
                 $filename=$progress->sanction_id.'_'.time().'_'.$u->getClientOriginalName();
-                $uploadedImage->move('uploads/images/',$filename);
-                $progress->images()->create(['image_path'=>$filename]);
+                $u->move('uploads/images/',$filename);
+                $progress->image()->create(['image_path'=>$filename,'progress_id'=>$p_stored->id]);
             }
         }
-        $progress->remarks=$progressValidated['remarks'];
-        $progress->sanction_id=$progressValidated['sanction_id'];
-        $progress->p_update=$formatDate;
-        $progress->save();
         return redirect(url('district/view-progress'))->with('message',"Progress Added Successfully!");
     }
 

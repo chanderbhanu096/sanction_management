@@ -9,7 +9,8 @@ use App\Models\Progress;
 class Image extends Model
 {
     use HasFactory;
-    protected $fillable=['image_path'];
+    protected $table="image";
+    protected $fillable=['image_path','progress_id'];
     public function progress()
     {
        return $this->belongsTo(Progress::class);     

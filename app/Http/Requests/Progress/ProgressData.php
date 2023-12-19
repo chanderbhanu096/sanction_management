@@ -26,7 +26,7 @@ class ProgressData extends FormRequest
             'completion_percentage'=>['required','numeric','regex:/^\d+(\.\d{1,2})?$/'],
             'p_isComplete'=>['required','string'],
             'p_uc'=> ['nullable','file','mimes:pdf','max:2048'],
-            'p_image.*'=>['nullable','image','mimes:jpeg,jpg,png','max:400','multiple'],
+            'p_image.*'=>['nullable','image','mimes:jpeg,jpg,png','max:400'],
             'remarks'=>['nullable','string'],
             'sanction_id'=>['required']
         ];  
