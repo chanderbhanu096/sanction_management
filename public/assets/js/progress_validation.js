@@ -1,6 +1,6 @@
 $('document').ready(function()
 {
-    $('#progress_form').submit(function()
+    $('#progress_form').submit(function(event)
     {
         if(!validateForm())
         {
@@ -33,7 +33,6 @@ $('document').ready(function()
         if(isCompleted==='-1')
         {
             isValid=false;
-            console.log("I am in selected");
             $("#isCompleted").next(".error").remove();
             $("#isCompleted").after("<span class='error'>Please select.</span>"); 
         }
@@ -42,7 +41,7 @@ $('document').ready(function()
             $("#isCompleted").next(".error").remove();
         }
        
-        if(isCompleted!==-1)
+        if(isCompleted==='yes')
         {
               // Validate If UC file is selected
         if(!selectedFile)
@@ -68,7 +67,7 @@ $('document').ready(function()
             $("#uc_file").next(".error").remove();
         }
         }
-        isValid=validateProgressImage();
+        validateProgressImage();
         return isValid;
     }
 
@@ -90,7 +89,7 @@ $('document').ready(function()
     for( let i=0;i<files.length;i++)
     {
         let file=files[i]
-        if(file.size>400*400)
+        if(file.size>400*1024)
         {
             $("#imageInput").next(".error").remove();
             $("#imageInput").after("<span class='error'>Image size should be less than 400Kb.</span>");
