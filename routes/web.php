@@ -44,8 +44,8 @@ Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
 Route::prefix('district')->middleware(['auth','web','distCheck'])->group(function()
 {
     Route::get('/',[DistrictController::class,'index']);
-    Route::get('/details/{gp}',[DistrictController::class,'details']);
+    Route::get('update/',[DistrictController::class,'update']);
     Route::get('/add-progress/{id}',[DistrictController::class,'progress']);
     Route::post('add-progress/',[DistrictController::class,'addProgress']);
-    Route::get('/view-progress',[DistrictController::class,'viewProgress']);
+    Route::get('dashboard',[DistrictController::class,'dashboard']);
 });

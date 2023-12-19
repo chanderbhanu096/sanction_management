@@ -11,13 +11,21 @@ use App\Http\Requests\Progress\ProgressData;
 use Illuminate\Support\Facades\DB;
 class DistrictController extends Controller
 {
+
+    public function dashboard()
+    {
+        return view('District.dashboard');
+    }
     public function index()
     {
+
         $district=Auth::user()->district;
-        $sanction = Sanction::select('gp','block', DB::raw('SUM(san_amount) as total_sanction_amount'))
-            ->where('district', $district)
-            ->groupBy('gp','block')
-            ->get();
+        $sanction=Sanction::where('district', $district)->doesntHave('progress')->get();
+    
+        // $sanction = Sanction::select('gp','block', DB::raw('SUM(san_amount) as total_sanction_amount'))
+        //     ->where('district', $district)
+        //     ->groupBy('gp','block')
+        //     ->get();
         return view('District.index',compact('sanction'));
     }
 
@@ -66,11 +74,12 @@ class DistrictController extends Controller
                 $progress->image()->create(['image_path'=>$filename,'progress_id'=>$p_stored->id]);
             }
         }
-        return redirect(url('district/view-progress'))->with('message',"Progress Added Successfully!");
+        return redirect(url('district/update'))->with('message',"Progress Added Successfully!");
     }
 
-    public function viewProgress()
+    public function update()
     {
-        return view('District/view-Progress');
+        
+        return view('district.update');
     }
 }
