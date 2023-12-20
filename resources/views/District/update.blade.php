@@ -14,7 +14,6 @@
         @else
         <div class="table table-responsive">
             <table class="table table-bordered text-center">
-                {{-- {{dd($sanction)}} --}}
                 <thead>
                     <th>Sr. No.</th>
                     <th>Block Name</th>
@@ -25,13 +24,22 @@
                     <th>Update Progress</th>
                 </thead>
                 <tbody>
+                    @php
+                     $i=1;   
+                    @endphp
                     @foreach ($sanction as $san)
-                    <td>1</td>
-                    <td>{{$san->block}}</td>
-                    <td>{{$san->gp}}</td>
-                    <td>{{$san->san_amount}}</td>
-                    <td>{{$san->progress()->completion_percentage}}</td>
-                    <td>{{$san->progress()->p_isComplete}}</td>
+                    <tr>
+                        <td>{{$i}}</td>
+                        <td>{{$san->block}}</td>
+                        <td>{{$san->gp}}</td>
+                        <td>{{$san->san_amount}}</td>
+                        <td>{{$san->progress[0]->p_isComplete=='yes'?"Completed":  $san->progress[0]->completion_percentage}}</td>
+                        <td>{{$san->progress[0]->p_isComplete}}</td> 
+                        <td><a href="" class="btn btn-success">Edit</a></td>
+                        @php
+                        $i++
+                        @endphp
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

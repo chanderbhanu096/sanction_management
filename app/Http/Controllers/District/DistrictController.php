@@ -80,7 +80,14 @@ class DistrictController extends Controller
     public function update()
     {
         $district=Auth::user()->district;
-        $sanction=Sanction::where('district', $district)->has('progress')->get();
+
+        $sanction = Sanction::whereHas('progress', function ($query) use ($district) {
+            $query->where('district', $district);
+        })->with('progress')->get();
+
+
+        // dd($sanction);
+        // $sanction=Sanction::where('district', $district)->has('progress')->get();
         return view('district.update',compact('sanction'));
     }
 }
