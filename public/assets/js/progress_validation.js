@@ -15,20 +15,8 @@ $('document').ready(function()
         let isCompleted=$('#isCompleted').val();
         let uc_file=$('#uc_file')[0];
         let selectedFile=uc_file.files[0];
+        let images=$('#imageInput')[0];
         
-
-        // Validate Percentage
-        if(!isValidPercentage(percentage_san))
-        {
-            isValid=false;
-            $("#p_completed_per").next(".error").remove();
-            $("#p_completed_per").after("<span class='error'>Please enter valid percentage value</span>");
-        }
-        else
-        {
-            $("#p_completed_per").next(".error").remove();
-        }
-
         // Validate isCompleted
         if(isCompleted==='-1')
         {
@@ -41,6 +29,20 @@ $('document').ready(function()
             $("#isCompleted").next(".error").remove();
         }
        
+        if(isCompleted==='no')
+        {
+        // Validate Percentage
+         if(!isValidPercentage(percentage_san))
+            {
+                isValid=false;
+                $("#p_completed_per").next(".error").remove();
+                $("#p_completed_per").after("<span class='error'>Please enter valid percentage value</span>");
+            }
+            else
+            {
+                $("#p_completed_per").next(".error").remove();
+            }   
+        }
         if(isCompleted==='yes')
         {
               // Validate If UC file is selected
@@ -67,7 +69,11 @@ $('document').ready(function()
             $("#uc_file").next(".error").remove();
         }
         }
-        validateProgressImage();
+        console.log(images.files.length);
+        if(images.file.length!=='')
+        {
+            isValid=validateProgressImage();
+        }
         return isValid;
     }
 

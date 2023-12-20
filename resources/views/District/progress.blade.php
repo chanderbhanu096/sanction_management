@@ -29,10 +29,6 @@
                 @csrf
                 <input type="hidden" class="form-control" name="sanction_id" value="{{$sanction->id}}">
                 <div class="mb-3">
-                  <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>
-                  <input type="text" class="form-control" id="p_completed_per" name="completion_percentage">
-                </div>
-                <div class="mb-3">
                     <label for="Work Completed" class="form-label">Is Sanction amount fully utilized?</label>
                     <select name="p_isComplete" id="isCompleted" class="form-control">
                         <option value="-1">--Select Option--</option>
@@ -44,6 +40,10 @@
                     <label for="UC file" class="form-label">Upload UC file(only pdf file allowed and PDf file size should be less than 2MB)</label>
                     <input type="file" class="form-control" id="uc_file" name="p_uc" accept="application/pdf">
                 </div>
+                <div class="mb-3" id="completion_per">
+                    <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>
+                    <input type="text" class="form-control" id="p_completed_per" name="completion_percentage">
+                  </div>
                 <div class="mb-3">
                     <label for="Progress Image" class="form-label">Select Progress Image</label>
                     <input type="file" id="imageInput" name="p_image[]" accept="image/jpeg, image/jpg, image/png" multiple>
@@ -68,15 +68,23 @@
 $(document).ready(function()
 {
     $('#uc').hide();
+    $('#completion_per').hide();
     $("select#isCompleted").change(function()
     {
         let selectedOption=$(this).children('option:selected').val();
         if(selectedOption=='yes')
         {
             $('#uc').show();
+            $('#completion_per').hide();
+        }
+        else if(selectedOption=='no')
+        {
+            $('#completion_per').show();
+            $('#uc').hide();
         }
         else
-        {
+        {   
+            $('#completion_per').hide();
             $('#uc').hide();
         }
     })

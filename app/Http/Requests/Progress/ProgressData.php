@@ -23,7 +23,7 @@ class ProgressData extends FormRequest
     {
         $rules=
         [
-            'completion_percentage'=>['required','numeric','regex:/^\d+(\.\d{1,2})?$/'],
+            'completion_percentage'=>['nullable','numeric','regex:/^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)$/'],
             'p_isComplete'=>['required','string'],
             'p_uc'=> ['nullable','file','mimes:pdf','max:2048'],
             'p_image.*'=>['nullable','image','mimes:jpeg,jpg,png','max:400'],
