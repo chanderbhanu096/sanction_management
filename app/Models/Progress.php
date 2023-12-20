@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
+use App\Models\Sanction;
 
 class Progress extends Model
 {
@@ -15,5 +16,10 @@ class Progress extends Model
     public function image()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function sanction()
+    {
+        return $this->belongsTo(Sanction::class, 'sanction_id');
     }
 }
