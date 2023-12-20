@@ -84,10 +84,13 @@ class DistrictController extends Controller
         $sanction = Sanction::whereHas('progress', function ($query) use ($district) {
             $query->where('district', $district);
         })->with('progress')->get();
-
-
-        // dd($sanction);
-        // $sanction=Sanction::where('district', $district)->has('progress')->get();
         return view('district.update',compact('sanction'));
+    }
+
+    public function updateProgress($id)
+    {
+        $sanction=Sanction::find($id);
+        $progress=$sanction->progress;
+        return view('district.update-form',compact('sanction','progress'));
     }
 }

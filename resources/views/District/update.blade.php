@@ -35,7 +35,7 @@
                         <td>{{$san->san_amount}}</td>
                         <td>{{$san->progress[0]->p_isComplete=='yes'?"Completed":  $san->progress[0]->completion_percentage}}</td>
                         <td>{{$san->progress[0]->p_isComplete}}</td> 
-                        <td><a href="" class="btn btn-success">Edit</a></td>
+                        <td><a href="{{url('district/update-progress/'.$san->id)}}" class="btn btn-success">Edit</a></td>
                         @php
                         $i++
                         @endphp
