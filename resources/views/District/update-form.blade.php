@@ -9,8 +9,7 @@
     </div>
     @endif
     <div class="card-header">
-        {{-- {{dd($progress[0]->completion_percentage)}} --}}
-        <h4>Add Sanction Progress</h4>
+        <h4>Update Sanction Progress</h4>
     </div>
     <div class="card-body">
         <div class="" >
@@ -40,6 +39,9 @@
                 <div class="mb-3" id="uc">
                     <label for="UC file" class="form-label">Upload UC file(only pdf file allowed and PDf file size should be less than 2MB)</label>
                     <input type="file" class="form-control" id="uc_file" name="p_uc" accept="application/pdf" value="{{$progress[0]->p_uc}}">
+                    @if($progress[0]->p_uc)
+                    <a href="{{ url('uploads/ucs/' . $progress[0]->p_uc) }}" target="_blank">View UC</a>
+                @endif
                 </div>
                 <div class="mb-3" id="completion_per">
                     <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>
@@ -71,6 +73,19 @@ $(document).ready(function()
 {
     $('#uc').hide();
     $('#completion_per').hide();
+
+     if($("select#isCompleted").children('option:selected').val()==='yes')
+     {
+        $('#uc').show();
+     }
+     else if($("select#isCompleted").children('option:selected').val()==='no')
+     {
+        $('#uc').hide();
+     }
+     else
+     {
+        $('#uc').hide();
+     }
     $("select#isCompleted").change(function()
     {
         let selectedOption=$(this).children('option:selected').val();
