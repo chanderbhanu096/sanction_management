@@ -49,4 +49,5 @@ Route::prefix('district')->middleware(['auth','web','distCheck'])->group(functio
     Route::post('add-progress/',[DistrictController::class,'addProgress']);
     Route::get('dashboard',[DistrictController::class,'dashboard']);
     Route::get('update-progress/{id}',[DistrictController::class,'updateProgress']);
+    Route::post('update-freeze',[DistrictController::class,'Freeze']);
 });

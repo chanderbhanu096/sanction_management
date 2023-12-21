@@ -93,4 +93,25 @@ class DistrictController extends Controller
         $progress=$sanction->progress;
         return view('district.update-form',compact('sanction','progress'));
     }
+    
+    public function Freeze(Request $req)
+    {
+        try
+        {
+            $progress=Progress::find($req->id);
+            if(!$progress)
+            {
+                return response()->json(['error' => 'Progress not found'], 404);
+            }
+            $progress->isFreeze='yes';
+            $progress->update();
+            return response()->json(['success' => true, 'message' => 'Progress Frozen Successfully'], 200);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(['success' => false, 'error' => 'Error freezing progress', 'message' => $e->getMessage()], 500);
+        } 
+        
+    }
+   
 }
