@@ -39,7 +39,7 @@
                 </div>
                 <div class="mb-3" id="uc">
                     <label for="UC file" class="form-label">Upload UC file(only pdf file allowed and PDf file size should be less than 2MB)</label>
-                    <input type="file" class="form-control" id="uc_file" name="p_uc" accept="application/pdf">
+                    <input type="file" class="form-control" id="uc_file" name="p_uc" accept="application/pdf" value="{{$progress[0]->p_uc}}">
                 </div>
                 <div class="mb-3" id="completion_per">
                     <label for="Progress Percentage" class="form-label">Percentage of Work Completed</label>
@@ -56,7 +56,7 @@
                         {{$progress[0]->remarks}}
                     </textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Progress</button>
+                <button type="submit" class="btn btn-primary">Update Progress</button>
               </form>
 
         </div>
