@@ -16,8 +16,7 @@ $('document').ready(function()
         let uc_file=$('#uc_file')[0];
         let selectedFile=uc_file.files[0];
         let images=$('#imageInput')[0];
-        
-        console.log('Selected File'+selectedFile);
+        let already_uc=$('#uc_file')[0];
 
         // Validate isCompleted
         if(isCompleted==='-1')
@@ -49,7 +48,16 @@ $('document').ready(function()
         }
         if(isCompleted==='yes')
         {
-              // Validate If UC file is selected
+        
+            if (already_uc.files.length === 0 && !already_uc.value) {
+                // No file selected, allow form submission without additional validation
+                console.log('No file selected');
+            }    
+            
+            else{
+
+            
+            // Validate If UC file is selected
         if(!selectedFile)
         {
             isValid=false;
@@ -75,6 +83,7 @@ $('document').ready(function()
         {
             $("#uc_file").next(".error").remove();
         }
+    }
         }
         if(images.files.length!=='')
         {

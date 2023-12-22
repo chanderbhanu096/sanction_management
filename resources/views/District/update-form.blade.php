@@ -115,6 +115,6 @@ $(document).ready(function()
     })
 });
 </script>
-<script src="{{asset('assets/js/progress_validation.js')}}"></script>
+<script src="{{asset('assets/js/progress_update_validation.js')}}"></script>
 @endsection
 
