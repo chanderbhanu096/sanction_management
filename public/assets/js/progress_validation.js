@@ -74,7 +74,7 @@ $('document').ready(function()
         {
             isValid=validateProgressImage();
         }
-        return isValid;
+        return false;
     }
 
     function isValidPercentage(value) {

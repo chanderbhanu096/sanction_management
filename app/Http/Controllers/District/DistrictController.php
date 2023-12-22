@@ -116,4 +116,8 @@ class DistrictController extends Controller
         
     }
    
+    public function change(ProgressData $data)
+    {
+
+    }
 }

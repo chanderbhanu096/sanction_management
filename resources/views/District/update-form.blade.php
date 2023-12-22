@@ -7,8 +7,6 @@
             <div>{{$error}}</div>
         @endforeach
     </div>
-
-    {{dd('images',$image);}}
     @endif
     <div class="card-header">
         <h4>Update Sanction Progress</h4>
@@ -27,7 +25,8 @@
             </div>
         </div>
         <div class="">
-            <form enctype="multipart/form-data" id="progress_form" method="POST" action="{{url('district/add-progress')}}">
+            <form enctype="multipart/form-data" id="progress_form" method="POST" action="{{url('district/update-progress')}}">
+                @method('PUT')
                 @csrf
                 <input type="hidden" class="form-control" name="sanction_id" value="{{$sanction->id}}">
                 <div class="mb-3">
@@ -67,7 +66,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Update Progress</button>
               </form>
-
         </div>
         
     </div>
@@ -83,15 +81,18 @@ $(document).ready(function()
 
      if($("select#isCompleted").children('option:selected').val()==='yes')
      {
+        $('#completion_per').hide();
         $('#uc').show();
      }
      else if($("select#isCompleted").children('option:selected').val()==='no')
      {
+        $('#completion_per').show();
         $('#uc').hide();
      }
      else
      {
         $('#uc').hide();
+        $('#completion_per').hide();
      }
     $("select#isCompleted").change(function()
     {
