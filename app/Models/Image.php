@@ -11,8 +11,10 @@ class Image extends Model
     use HasFactory;
     protected $table="image";
     protected $fillable=['image_path','progress_id'];
+
     public function progress()
     {
-       return $this->belongsTo(Progress::class);     
+       return $this->belongsTo(Progress::class,'progress_id','id');     
     }
+
 }

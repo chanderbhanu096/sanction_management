@@ -7,6 +7,8 @@
             <div>{{$error}}</div>
         @endforeach
     </div>
+
+    {{dd('images',$image);}}
     @endif
     <div class="card-header">
         <h4>Update Sanction Progress</h4>
@@ -48,15 +50,20 @@
                     <input type="text" class="form-control" id="p_completed_per" name="completion_percentage">
                   </div>
                 <div class="mb-3">
-                    <label for="Progress Image" class="form-label">Select Progress Image</label>
+                    <label for="Progress Image" class="form-label">Update Progress Image</label>
                     <input type="file" id="imageInput" name="p_image[]" accept="image/jpeg, image/jpg, image/png" multiple>
-                    <small>Allowed formats: jpg, jpeg, png</small>
+                    @if(sizeof($images)>0)
+                    <!-- Display existing image previews here -->
+                        @foreach($images as $img)
+                            <img src="{{ url('uploads/images/'.$img->image_path) }}" alt="Progress Image" class="img-fluid" style="height:200px;width:200px">
+                        @endforeach
+                    @endif
+                    <br>
+                    <small>Allowed formats: jpg, jpeg, png and maximum 3 images are allowed.</small>
                 </div>
                 <div class="mb-3">
                     <label for="Remarks" class="form-label">Remarks</label>
-                    <textarea type="text" name="remarks" id="remarks" class="form-control">
-                        {{$progress[0]->remarks}}
-                    </textarea>
+                    <textarea type="text" name="remarks" id="remarks" class="form-control">{{$progress[0]->remarks}}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Progress</button>
               </form>

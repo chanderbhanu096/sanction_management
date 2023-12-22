@@ -15,11 +15,11 @@ class Progress extends Model
 
     public function image()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class,'');
     }
 
     public function sanction()
     {
-        return $this->belongsTo(Sanction::class, 'sanction_id');
+        return $this->belongsTo(Sanction::class, 'progress_id','id');
     }
 }

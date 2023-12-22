@@ -51,8 +51,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="Remarks" class="form-label">Remarks</label>
-                    <textarea type="text" name="remarks" id="remarks" class="form-control">
-                    </textarea>
+                    <textarea type="text" name="remarks" id="remarks" class="form-control"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Add Progress</button>
               </form>

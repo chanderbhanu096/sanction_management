@@ -91,7 +91,9 @@ class DistrictController extends Controller
     {
         $sanction=Sanction::find($id);
         $progress=$sanction->progress;
-        return view('district.update-form',compact('sanction','progress'));
+        // dd("Progress",$progress[0]->image);
+        $images=$progress[0]->image;
+        return view('district.update-form',compact('sanction','progress','images'));
     }
     
     public function Freeze(Request $req)
