@@ -118,6 +118,10 @@ class DistrictController extends Controller
    
     public function change(ProgressData $data)
     {
+        $progressValidated=$data->validated();
+        if($progressValidated->p_isComplete=="yes")
+        {
 
+        }
     }
 }
