@@ -10,6 +10,7 @@ use App\Models\Progress;
 use App\Http\Requests\Progress\ProgressData;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Models\Image;
 class DistrictController extends Controller
 {
 
@@ -123,7 +124,7 @@ class DistrictController extends Controller
         $formatDate=$currentDate->format('Y-m-d H:i:s');
         $progressValidated=$data->validated();
         $progress=Progress::find($id);
-        // dd(isset($progressValidated['p_uc']));
+        // Progress Update Section
         if($progressValidated['p_isComplete']=="yes")
         {
             $progress->p_isComplete=$progressValidated['p_isComplete'];
@@ -151,6 +152,33 @@ class DistrictController extends Controller
         $progress->remarks=$progressValidated['remarks'];
         $progress->p_update=$formatDate;
         $progress->save();
+
+        // Image Update Section
+        if(isset($progressValidated['p_image']))
+        {
+            $images=Image::where('progress_id',$id)->get();
+
+            foreach($images as $image)
+            {
+                $dest='uploads/images/'.$image->image_path;
+                if(File::exists($dest))
+                {
+                    File::delete($dest);
+                }
+                Image::where('progress_id', $id)->delete();
+            }
+            if($data->hasFile('p_image'))
+            {
+                $uploadedImage=$data->file('p_image');
+                foreach($uploadedImage as $u)
+                {
+                    $filename=$progress->sanction_id.'_'.time().'_'.$u->getClientOriginalName();
+                    $u->move('uploads/images/',$filename);
+                    $progress->image()->create(['image_path'=>$filename,'progress_id'=>$p_stored->id]);
+                }
+            }
+        }
+        return redirect(url('district/'))->with('message',"Progress Updated Successfully");
 
     }
 }
