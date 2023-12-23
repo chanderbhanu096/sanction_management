@@ -25,9 +25,9 @@
             </div>
         </div>
         <div class="">
-            <form enctype="multipart/form-data" id="progress_form" method="POST" action="{{url('district/update-progress')}}">
-                @method('PUT')
+            <form enctype="multipart/form-data" id="progress_form" method="POST" action="{{url('district/update-progress/'.$progress[0]->id)}}">
                 @csrf
+                @method('PUT')
                 <input type="hidden" class="form-control" name="sanction_id" value="{{$sanction->id}}">
                 <div class="mb-3">
                     <label for="Work Completed" class="form-label">Is Sanction amount fully utilized?</label>

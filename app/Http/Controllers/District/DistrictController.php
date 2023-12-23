@@ -9,6 +9,7 @@ use App\Models\Sanction;
 use App\Models\Progress;
 use App\Http\Requests\Progress\ProgressData;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 class DistrictController extends Controller
 {
 
@@ -116,12 +117,40 @@ class DistrictController extends Controller
         
     }
    
-    public function change(ProgressData $data)
+    public function change(ProgressData $data,$id)
     {
+        $currentDate=now();
+        $formatDate=$currentDate->format('Y-m-d H:i:s');
         $progressValidated=$data->validated();
-        if($progressValidated->p_isComplete=="yes")
+        $progress=Progress::find($id);
+        // dd(isset($progressValidated['p_uc']));
+        if($progressValidated['p_isComplete']=="yes")
         {
-
+            $progress->p_isComplete=$progressValidated['p_isComplete'];
+            if(isset($progressValidated['p_uc']))
+            {
+                if($data->hasFile('p_uc'))
+                {
+                    $destination='uploads/ucs/'.$progress->p_uc;
+                    if(File::exists($destination))
+                    {
+                        File::delete($destination);
+                    }
+                    $file=$data->file('p_uc');
+                    $filename=$progressValidated['sanction_id'].time().'.'.$file->getClientOriginalExtension();
+                    $file->move('uploads/ucs/',$filename);
+                    $progress->p_uc=$filename;
+                }
+            }
         }
+        else
+        {
+            $progress->p_isComplete=$progressValidated['p_isComplete'];
+            $progress->completion_percentage=$progressValidated['completion_percentage'];
+        }
+        $progress->remarks=$progressValidated['remarks'];
+        $progress->p_update=$formatDate;
+        $progress->save();
+
     }
 }
