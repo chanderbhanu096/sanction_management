@@ -174,11 +174,11 @@ class DistrictController extends Controller
                 {
                     $filename=$progress->sanction_id.'_'.time().'_'.$u->getClientOriginalName();
                     $u->move('uploads/images/',$filename);
-                    $progress->image()->create(['image_path'=>$filename,'progress_id'=>$p_stored->id]);
+                    $progress->image()->create(['image_path'=>$filename,'progress_id'=>$id]);
                 }
             }
         }
-        return redirect(url('district/'))->with('message',"Progress Updated Successfully");
+        return redirect(url('district/update'))->with('message',"Progress Updated Successfully");
 
     }
 }
