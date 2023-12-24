@@ -39,6 +39,7 @@ Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
     Route::get('/view',[DirController::class,'view']);
     Route::get('/edit/{id}',[DirController::class,'edit']);
     Route::put('/sanction-update/{id}',[DirController::class,'update']);
+    Route::get('/view-progress',[DirController::class,'viewProgress']);
 });
 
 Route::prefix('district')->middleware(['auth','web','distCheck'])->group(function()

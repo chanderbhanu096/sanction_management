@@ -7,7 +7,7 @@
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{url('dir')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -28,13 +28,25 @@
             <span>View Sanction</span>
         </a>
     </li>
+
+    
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Progress
+    </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{url('/dir/view-progress')}}" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <span>View Progress</span>
+        </a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
         <form action="{{route('logout')}}" method="POST" id="logout-form" class="d-none">
             @csrf
         </form>
     </li>
-    <hr class="sidebar-divider">
     <!-- Heading -->
     
     <!-- Sidebar Toggler (Sidebar) -->

@@ -31,7 +31,6 @@ class DirController extends Controller
     public function view()
     {
         $sanction=Sanction::with('progress')->get();
-        // dd($sanction[9]->progress[0]->isFreeze);
         return view('Directorate/view',compact('sanction'));
     }
     public function edit($id)
@@ -55,5 +54,11 @@ class DirController extends Controller
         $sanction->sanction_purpose=$data['sanction_purpose'];
         $sanction->update();
         return redirect(url('dir/view'))->with("message","Sanction updated successfully!");
+    }
+
+    public function viewProgress()
+    {
+        $sanction=Sanction::with('progress')->get();
+        return view('Directorate/view-progress',compact('sanction'));
     }
 }
