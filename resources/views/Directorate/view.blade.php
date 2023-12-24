@@ -33,7 +33,24 @@
                     <td>{{$s->gp}}</td>
                     <td>{{$s->san_amount}}</td>
                     <td>{{$s->sanction_date}}</td>
-                    <td><a href="{{url('dir/edit/').'/'.$s->id}}" class="btn btn-info">Edit</a></td>
+                    <td>
+                        @php
+                            $progressExists = optional($s->progress)->isNotEmpty();
+                            $isFreeze=false;
+                            if($progressExists)
+                            {
+                                if($s->progress[0]->isFreeze=='yes')
+                                {
+                                    $isFreeze=true;
+                                }
+                            }
+                        @endphp
+                        @if($isFreeze)
+                             <div class="alert alert-info">Can not edit, as progress is already freezed by the District.</div>
+                        @elseif(!$isFreeze) 
+                             <a href="{{url('dir/edit/').'/'.$s->id}}" class="btn btn-info">Edit</a>
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

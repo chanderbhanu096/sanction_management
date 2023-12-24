@@ -30,7 +30,8 @@ class DirController extends Controller
     }
     public function view()
     {
-        $sanction=Sanction::all();
+        $sanction=Sanction::with('progress')->get();
+        // dd($sanction[9]->progress[0]->isFreeze);
         return view('Directorate/view',compact('sanction'));
     }
     public function edit($id)
