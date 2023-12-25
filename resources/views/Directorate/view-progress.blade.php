@@ -12,12 +12,12 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered text-center">
+            <table class="table table-bordered text-center table-striped">
                 <thead>
                     <tr>
                         <th>Sr. No.</th>
                         <th>District Name</th>
-                        <th>Total Sanction Amounts</th>
+                        <th>Total Sanction Amounts(Rs.)</th>
                         <th>Total Utilized</th>
                     </tr>
                 </thead>
@@ -59,6 +59,8 @@
                 </tbody>
             </table>
         </div>
+        <div id="blocks"></div>
+        <div id="gps"></div>
     </div>
 </div>
 @endsection
