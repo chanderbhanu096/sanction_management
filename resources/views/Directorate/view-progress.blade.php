@@ -13,11 +13,51 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered text-center">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>District Name</th>
+                        <th>Total Sanction Amounts</th>
+                        <th>Total Utilized</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $i=1;
+                    @endphp
+                    @foreach ($districts as $d)
+                        @php
+                            $totalSanction=0;
+                            $totalUtilized=0;    
+                        @endphp    
+                        <tr>
+                            <td>{{$i}}</td>
+                            <td>{{$d}}</td>
+                            @php
+                                $i++;
+                            @endphp
+                            @foreach($sanctions as $san)
+                                @if($san->district==$d)
+                                @php
+                                    $totalSanction+=floatval($san->san_amount);
+                                    $progressExists = optional($san->progress)->isNotEmpty();
+                                    if($progressExists)
+                                    {
+                                        $totalUtilized+=($san->progress && $san->progress[0]->p_isComplete == 'yes') ? floatval($san->san_amount) : 0;
+                                    }
+                                    else {
+                                        $totalUtilized+=0;
+                                    }
+                                    
+                                @endphp
+                                @endif
+                            @endforeach
+                            <td>{{ number_format($totalSanction, 2) }}</td>
+                            <td>{{ number_format($totalUtilized, 2) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
