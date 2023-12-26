@@ -62,4 +62,10 @@ class DirController extends Controller
         $sanctions = Sanction::with('progress')->get();
         return view('Directorate.view-progress', compact('districts', 'sanctions'));
     }
+
+    public function getBlocks($district)
+    {
+        $blocks=Sanction::where('district',$district)->distinct()->pluck('block');
+        return response()->json($blocks);
+    }       
 }
