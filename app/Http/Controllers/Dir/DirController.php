@@ -74,4 +74,10 @@ class DirController extends Controller
         $gps = Sanction::where('block', $block)->distinct()->pluck('gp');
         return response()->json($gps);
     }
+
+    public function showGpDetails($gp)
+    {
+        $gpDetails=Sanction::where('gp',$gp)->with('progress')->get();
+        dd($gpDetails);
+    }
 }

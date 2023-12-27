@@ -42,6 +42,7 @@ Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
     Route::get('/view-progress',[DirController::class,'viewProgress']);
     Route::get('/blocks/{district}',[DirController::class,'getBlocks']);
     Route::get('/gps/{block}',[DirController::class,'getGps']);
+    Route::get('/gpDetails/{gp}',[DirController::class,'showGpDetails']);
 });
 
 Route::prefix('district')->middleware(['auth','web','distCheck'])->group(function()

@@ -90,8 +90,16 @@
             {
                 let block=$(this).text();
                 updateGpTable(block);
-            })
+            });
 
+            // Click Listener for the GP Cell
+            $(document).on('click','a.gpCell',function()
+            {
+                let gp=$(this).text();
+                let url = '{{ url("dir/gpDetails") }}' + '/' + gp;
+                // Navigate to the URL
+                window.location.href = url;
+            });
 
              // Add event listener for the back button
             $(document).on('click', '#backButton', function () {
@@ -128,10 +136,8 @@
                                 }
                             }
                         });
-
                         blockTable += '<tr>';
                         blockTable+='<td>'+ index +'</td>';
-                        
                         blockTable += '<td><a href="javascript:void(0);" class="blockCell" data-district='+block+'>'+block+'</a></td>'                 
                         //   <td class="blockCell">' + block + '</td>';
                         blockTable += '<td>' + totalSanction.toFixed(2) + '</td>';
@@ -139,7 +145,6 @@
                         blockTable += '</tr>';
                         index++;
                     });
-
                     blockTable += '</tbody>';
                     blockTable += '</table>';
                     blockTable +='<button id="backButton" class="btn btn-primary float-right m-2">Back</button>';    
@@ -175,11 +180,9 @@
                                 }
                         }
                     });
-
                         gpTable += '<tr>';
                         gpTable+='<td>'+ index +'</td>';
-                        
-                        gpTable += '<td><a href="javascript:void(0);" class="blockCell" data-district='+g+'>'+g+'</a></td>'                 
+                        gpTable += '<td><a href="javascript:void(0);" class="gpCell" data-district='+g+'>'+g+'</a></td>'                 
                         //   <td class="blockCell">' + block + '</td>';
                         gpTable += '<td>' + totalSanction.toFixed(2) + '</td>';
                         gpTable += '<td>' + totalUtilized.toFixed(2) + '</td>';
