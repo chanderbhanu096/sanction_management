@@ -77,10 +77,20 @@
             // Store the original district table HTML
             var originalDistrictTableHtml = $('#districtTable').html();
 
+
+            // Click Listener on the District Table
             $('table#districtTable').on('click', 'a.districtCell', function () {
                 let district = $(this).data('district');
                 updateBlockTable(district);
             });
+
+            // Click Listener on the Block Table
+            $(document).on('click','a.blockCell',function()
+            {
+                let block=$(this).text();
+                updateGpTable(block);
+            })
+
 
              // Add event listener for the back button
             $(document).on('click', '#backButton', function () {
@@ -113,7 +123,9 @@
 
                         blockTable += '<tr>';
                         blockTable+='<td>'+ index +'</td>';
-                        blockTable += '<td class="blockCell">' + block + '</td>';
+                        
+                        blockTable += '<td><a href="javascript:void(0);" class="blockCell" data-district='+block+'>'+block+'</a></td>'                 
+                        //   <td class="blockCell">' + block + '</td>';
                         blockTable += '<td>' + totalSanction.toFixed(2) + '</td>';
                         blockTable += '<td>' + totalUtilized.toFixed(2) + '</td>';
                         blockTable += '</tr>';
@@ -128,6 +140,50 @@
                     
                     $('#districtTable').html(blockTable);
                 });
+            }
+            function updateGpTable(block) {
+             $.get('{{ url('/dir/gps') }}' + '/' + block, function (gps) {
+               // Handle the GPS data here
+               let gpTable='<div>';
+                gpTable += '<table>';   
+                gpTable += '<thead><tr><th>Sr. No.</th><th>Block Name</th><th>Total Sanctions</th><th>Total Utilized</th></tr></thead>';
+                gpTable += '<tbody>';
+                let index=1;
+                gps.forEach(function(g)
+                {
+                    let totalSanction = 0;
+                    let totalUtilized = 0;
+                    sanctionsData.forEach(function(s)
+                    {
+                        if(s.gp===g)
+                        {
+                            totalSanction += parseFloat(s.san_amount);
+                                let progressExists = s.progress && s.progress.length > 0;
+                                if (progressExists && s.progress[0].p_isComplete === 'yes' && s.progress[0].isFreeze === 'yes') {
+                                    totalUtilized += parseFloat(s.san_amount);
+                                } else {
+                                    totalUtilized += 0;
+                                }
+                        }
+                    });
+
+                        gpTable += '<tr>';
+                        gpTable+='<td>'+ index +'</td>';
+                        
+                        gpTable += '<td><a href="javascript:void(0);" class="blockCell" data-district='+g+'>'+g+'</a></td>'                 
+                        //   <td class="blockCell">' + block + '</td>';
+                        gpTable += '<td>' + totalSanction.toFixed(2) + '</td>';
+                        gpTable += '<td>' + totalUtilized.toFixed(2) + '</td>';
+                        gpTable += '</tr>';
+                        index++;
+                });
+                gpTable += '</tbody>';
+                gpTable += '</table>';
+                gpTable +='<button id="backButton" class="btn btn-primary float-right m-2">Back</button>';    
+                gpTable +='</div>';
+                    // Add a back button to go back to the district table
+                    $('#districtTable').html(gpTable);
+             });
             }
         });
     </script>
