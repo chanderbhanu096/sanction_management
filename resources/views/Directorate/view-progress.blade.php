@@ -73,7 +73,8 @@
             var districtsData = {!! json_encode($districts) !!};
             var sanctionsData = {!! json_encode($sanctions) !!};
 
-            
+            // Stack to keep track of displayed tables
+            var tableStack = [];
             // Store the original district table HTML
             var originalDistrictTableHtml = $('#districtTable').html();
 
@@ -95,7 +96,14 @@
              // Add event listener for the back button
             $(document).on('click', '#backButton', function () {
             // Restore the original district table HTML
-            $('#districtTable').html(originalDistrictTableHtml);
+             // Pop the last table from the stack
+               var lastTable = tableStack.pop();
+                if (lastTable) {
+                  $('#districtTable').html(lastTable);
+                } else {
+                // If the stack is empty, restore the original district table HTML
+                $('#districtTable').html(originalDistrictTableHtml);
+                }
             });
 
             function updateBlockTable(district) {
@@ -137,7 +145,8 @@
                     blockTable +='<button id="backButton" class="btn btn-primary float-right m-2">Back</button>';    
                     blockTable +='</div>';
                     // Add a back button to go back to the district table
-                    
+                     // Push the current district table to the stack
+                    tableStack.push($('#districtTable').html());
                     $('#districtTable').html(blockTable);
                 });
             }
@@ -177,10 +186,12 @@
                         gpTable += '</tr>';
                         index++;
                 });
-                gpTable += '</tbody>';
-                gpTable += '</table>';
-                gpTable +='<button id="backButton" class="btn btn-primary float-right m-2">Back</button>';    
-                gpTable +='</div>';
+                        gpTable += '</tbody>';
+                        gpTable += '</table>';
+                        gpTable +='<button id="backButton" class="btn btn-primary float-right m-2">Back</button>';    
+                        gpTable +='</div>';
+                        // Push the current block table to the stack
+                        tableStack.push($('#districtTable').html());
                     // Add a back button to go back to the district table
                     $('#districtTable').html(gpTable);
              });
