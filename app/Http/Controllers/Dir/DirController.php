@@ -6,8 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Sanction\sanRequest;
 use App\Models\Sanction;
+use App\Models\Progress;
 class DirController extends Controller
 {
+
+    public function dashboard()
+    {
+        $sanctionCount=Sanction::count();
+        $completedSanction=Progress::where('p_isComplete','yes')->count();
+        $totalFundReleased = Sanction::sum('san_amount');
+        $sumUtilized=Sanction::whereHas('progress',function($query)
+        {
+            $query->where('isFreeze','yes');
+        })->sum('san_amount');
+        return view('Directorate/dashboard',compact('sanctionCount','completedSanction','totalFundReleased','sumUtilized'));
+    }
+
     public function index()
     {
         return view('Directorate/index');

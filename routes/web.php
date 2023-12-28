@@ -34,6 +34,7 @@ Route::prefix('admin')->middleware(['auth','web','adminCheck'])->group(function(
 });
 Route::prefix('dir')->middleware(['auth','web','dirCheck'])->group(function()
 {
+    Route::get('/dashboard',[DirController::class,'dashboard']);
     Route::get('/',[DirController::class,'index']);
     Route::post('/sanction-add',[DirController::class,'store']);
     Route::get('/view',[DirController::class,'view']);
