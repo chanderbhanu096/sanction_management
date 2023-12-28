@@ -129,11 +129,12 @@
 
             function updateBlockTable(district) {
                 $.get('{{ url('/dir/blocks') }}' + '/' + district, function (blocks) {
-                    let blockTable ='<div>';
-                    blockTable += '<table>';                                                    
+                    let blockTable = '<table>';                                                    
                     blockTable += '<thead><tr><th>Sr. No.</th><th>Block Name</th><th>Total Sanctions</th><th>Total Utilized</th></tr></thead>';
                     blockTable += '<tbody>';
                     let index=1;
+                    let grandsanction=0;
+                    let grandutilized=0;
                     blocks.forEach(function (block) {
                         let totalSanction = 0;
                         let totalUtilized = 0;
@@ -157,11 +158,17 @@
                         blockTable += '<td>' + totalUtilized.toFixed(2) + '</td>';
                         blockTable += '</tr>';
                         index++;
+                        grandsanction+=totalSanction;
+                        grandutilized+=totalUtilized;
                     });
                     blockTable += '</tbody>';
+                    blockTable+='<tfoot><tr><th colspan="2">Total</th>';
+                    blockTable+='<th>'+grandsanction.toFixed(2)+'</th>';
+                    blockTable+='<th>'+grandutilized.toFixed(2)+'</th>';
+                    blockTable+='</tr></tfoot>';
                     blockTable += '</table>';
                     blockTable +='<button id="backButton" class="btn btn-primary float-right m-2">Back</button>';    
-                    blockTable +='</div>';
+                    
                     // Add a back button to go back to the district table
                      // Push the current district table to the stack
                     tableStack.push($('#districtTable').html());
