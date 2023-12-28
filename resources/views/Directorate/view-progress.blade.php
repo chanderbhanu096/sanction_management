@@ -23,6 +23,8 @@
                 <tbody>
                     @php
                         $i=1;
+                        $grandTotalSanction = 0;
+                        $grandTotalUtilized = 0;
                     @endphp
                     @foreach ($districts as $d)
                         @php
@@ -58,8 +60,19 @@
                             <td>{{ number_format($totalSanction, 2) }}</td>
                             <td>{{ number_format($totalUtilized, 2) }}</td>
                         </tr>
+                        @php
+                            $grandTotalSanction +=$totalSanction;
+                            $grandTotalUtilized += $totalUtilized;
+                        @endphp
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Total</th>
+                        <th>{{ number_format($grandTotalSanction, 2) }}</th>
+                        <th>{{ number_format($grandTotalUtilized, 2) }}</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <div id="blocksTable"></div>
