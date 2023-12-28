@@ -42,3 +42,26 @@
     max-width: 100%;
     height: 150px;
 }
+
+#datatable th
+{
+    color: #5829c7;
+    border:1px solid rgb(193, 191, 191);
+    text-align: center;
+}
+
+#datatable td
+{
+    border:1px solid rgb(193, 191, 191);
+}
+#datatable_filter
+{
+    padding:0.6rem;
+}
+
+#datatable_length label
+{
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}

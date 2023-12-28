@@ -25,6 +25,7 @@
                     <th>Sanction Date</th>
                     <th>Sanction Head</th>
                     <th>Sanction Amount</th>
+                    <th>Update Detail</th>
                     <th>Fully Utilized?</th>
                     <th>View UC</th>
                     <th>View Images</th>
@@ -39,12 +40,16 @@
                     <td class="align-middle">{{$details->sanction_date}}</td>
                     <td class="align-middle">{{$details->sanction_head}}</td>
                     <td class="align-middle">{{$details->san_amount}}</td>
-                    <td class="align-middle">
-                        @php 
+                    @php 
                         $i++;
-                            $progressExists=optional($details->progress)->isNotEmpty();
-                        @endphp
-
+                        $progressExists=optional($details->progress)->isNotEmpty();
+                    @endphp
+                    <td class="align-middle">
+                        @if($progressExists)
+                            {{$details->progress[0]->updated_at}}
+                        @endif
+                    </td>
+                    <td class="align-middle">
                         @if($progressExists)
                             @if($details->progress[0]->p_isComplete=='yes')
                                 @if($details->progress[0]->isFreeze=='yes')

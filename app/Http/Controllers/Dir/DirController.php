@@ -78,7 +78,6 @@ class DirController extends Controller
     public function showGpDetails($gp)
     {
         $gpDetails=Sanction::where('gp',$gp)->with('progress')->get();
-        // $images=$progress[0]->image;
         return view('Directorate.gpdetails',compact('gpDetails'));
     }
 }

@@ -12,7 +12,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered text-center">
+            <table class="table table-bordered text-center" id="datatable">
             <thead>
                     <th>Sanction Id</th>
                     <th>Financial Year</th>
@@ -22,6 +22,7 @@
                     <th>Sanction Amount</th>
                     <th>Sanction Date</th>
                     <th>Edit</th>
+                    <th>View Progress</th>
             </thead>
             <tbody>
                 @foreach($sanction as $s)
@@ -46,11 +47,12 @@
                             }
                         @endphp
                         @if($isFreeze)
-                             <div class="alert alert-info">Can not edit, as progress is already freezed by the District.</div>
+                             <div class="alert alert-info">Progress is Freezed by the District.</div>
                         @elseif(!$isFreeze) 
                              <a href="{{url('dir/edit/').'/'.$s->id}}" class="btn btn-info">Edit</a>
                         @endif
                     </td>
+                    <td><a href="{{url('dir/gpDetails/').'/'.$s->gp}}">View</a></td>
                 </tr>
                 @endforeach
             </tbody>

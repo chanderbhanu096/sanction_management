@@ -13,6 +13,11 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="{{asset('assets/css/sb-admin-2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+
+    {{-- DataTable links --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -73,6 +78,14 @@
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
     crossorigin="anonymous" ></script>
 
+     {{-- Datatable Script --}}
+     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+     <script>
+        $(document).ready( function () {
+            $('#datatable').DataTable();
+            } );
+    </script>
     @yield('scripts')
     
 
