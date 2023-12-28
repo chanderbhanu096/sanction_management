@@ -14,7 +14,7 @@
                         <h3>Rs. {{$totalFundReleased}}</h3>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{url('admin/category')}}">View Details</a>
+                        <a class="small text-white stretched-link" href="{{url('dir/view-progress')}}">View Details</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         <h3>Rs. {{$sumUtilized}}</h3>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{url('admin/category')}}">View Details</a>
+                        <a class="small text-white stretched-link" href="{{url('dir/view-progress')}}">View Details</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <h3>{{$sanctionCount}}</h3>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{url('admin/category')}}">View Details</a>
+                        <a class="small text-white stretched-link" href="{{url('dir/view')}}">View Details</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <h3>{{$completedSanction}}</h3>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{url('admin/category')}}">View Details</a>
+                        <a class="small text-white stretched-link" href="{{url('dir/view')}}">View Details</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
