@@ -29,27 +29,51 @@
                     <th>View UC</th>
                     <th>View Images</th>
                 </thead>
+                @php
+                    $i=1;
+                @endphp
                 @foreach($gpDetails as $details)
                 <tbody>
-                    <td>1</td>
-                    <td>{{$details->financial_year}}</td>
-                    <td>{{$details->sanction_date}}</td>
-                    <td>{{$details->sanction_head}}</td>
-                    <td>{{$details->san_amount}}</td>
-                    <td>
+                    <td class="align-middle">{{$i}}</td>
+                    <td class="align-middle">{{$details->financial_year}}</td>
+                    <td class="align-middle">{{$details->sanction_date}}</td>
+                    <td class="align-middle">{{$details->sanction_head}}</td>
+                    <td class="align-middle">{{$details->san_amount}}</td>
+                    <td class="align-middle">
                         @php 
+                        $i++;
                             $progressExists=optional($details->progress)->isNotEmpty();
                         @endphp
-                        {{$progressExists?$details->progress[0]->p_isComplete:''}}
-                    </td>
-                    <td>
+
                         @if($progressExists)
-                        <a href="{{url('uploads/ucs/'.$details->progress[0]->p_uc)}}" target="_blank">View UC File</a>
+                            @if($details->progress[0]->p_isComplete=='yes')
+                                @if($details->progress[0]->isFreeze=='yes')
+                                    Yes
+                                @else
+                                    Progress is not Freezed by the District 
+                                @endif
+                            @else
+                                No
+                            @endif
                         @else
+                            Progress is not reported
+                        @endif
+                    </td>
+                    <td class="align-middle">
+                        @if($progressExists)
+                            @if($details->progress[0]->p_isComplete=='yes' && $details->progress[0]->isFreeze=='yes')
+                                <a href="{{url('uploads/ucs/'.$details->progress[0]->p_uc)}}" target="_blank">View UC File</a>
+                             @elseif($details->progress[0]->p_isComplete=='no')
+                                <span>Sanction is <b>{{$details->progress[0]->completion_percentage}}</b> % Utilized.</span>
+                             @else
+                                <span>Progress is not Freezed by the District</span>
+                            @endif
+                             
+                        @else 
                             <span>UC not found!</span>
                         @endif                        
                     </td>
-                    <td>
+                    <td class="align-middle">
                         @if($progressExists)
                             @php
                                 $imageExists=optional($details->progress[0]->image)->isNotEmpty();
@@ -67,6 +91,8 @@
                             @else
                                 <span>Images not found!</span>
                              @endif
+                        @else
+                            <span>Progress is not reported</span> 
                         @endif
                     </td>
                 </tbody>
