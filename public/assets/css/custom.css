@@ -63,5 +63,11 @@
 {
     display: flex;
     flex-direction: row;
-    align-content: space-around;
+    align-content: space-around;        
+}
+
+#datatable_length label select
+{
+    margin: 0 8px;
+    width: 60px;
 }
